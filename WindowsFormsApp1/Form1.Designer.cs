@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.NameTextbox = new System.Windows.Forms.TextBox();
@@ -43,22 +42,22 @@
             this.SecondTimeBtn = new System.Windows.Forms.RadioButton();
             this.ThirdTimeBtn = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.FirstTimeStatus = new System.Windows.Forms.PictureBox();
-            this.SecondTimeStatus = new System.Windows.Forms.PictureBox();
-            this.ThirtTimeStatus = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ResultFirstTime = new System.Windows.Forms.Label();
-            this.ResultSecondTime = new System.Windows.Forms.Label();
+            this.ClearBtn = new System.Windows.Forms.Button();
             this.ThirdTimeResult = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
-            this.ClearBtn = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ResultSecondTime = new System.Windows.Forms.Label();
+            this.ResultFirstTime = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ThirtTimeStatus = new System.Windows.Forms.PictureBox();
+            this.SecondTimeStatus = new System.Windows.Forms.PictureBox();
+            this.FirstTimeStatus = new System.Windows.Forms.PictureBox();
             this.GetDataBtn = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -200,63 +199,14 @@
             this.groupBox1.Text = "Lần thi";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // FirstTimeStatus
+            // ClearBtn
             // 
-            this.FirstTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("FirstTimeStatus.Image")));
-            this.FirstTimeStatus.InitialImage = null;
-            this.FirstTimeStatus.Location = new System.Drawing.Point(94, 78);
-            this.FirstTimeStatus.Name = "FirstTimeStatus";
-            this.FirstTimeStatus.Size = new System.Drawing.Size(32, 32);
-            this.FirstTimeStatus.TabIndex = 13;
-            this.FirstTimeStatus.TabStop = false;
-            // 
-            // SecondTimeStatus
-            // 
-            this.SecondTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("SecondTimeStatus.Image")));
-            this.SecondTimeStatus.InitialImage = null;
-            this.SecondTimeStatus.Location = new System.Drawing.Point(167, 78);
-            this.SecondTimeStatus.Name = "SecondTimeStatus";
-            this.SecondTimeStatus.Size = new System.Drawing.Size(32, 32);
-            this.SecondTimeStatus.TabIndex = 14;
-            this.SecondTimeStatus.TabStop = false;
-            // 
-            // ThirtTimeStatus
-            // 
-            this.ThirtTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("ThirtTimeStatus.Image")));
-            this.ThirtTimeStatus.InitialImage = null;
-            this.ThirtTimeStatus.Location = new System.Drawing.Point(242, 78);
-            this.ThirtTimeStatus.Name = "ThirtTimeStatus";
-            this.ThirtTimeStatus.Size = new System.Drawing.Size(32, 32);
-            this.ThirtTimeStatus.TabIndex = 15;
-            this.ThirtTimeStatus.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 87);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 23);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Kết quả";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // ResultFirstTime
-            // 
-            this.ResultFirstTime.AutoSize = true;
-            this.ResultFirstTime.Location = new System.Drawing.Point(81, 113);
-            this.ResultFirstTime.Name = "ResultFirstTime";
-            this.ResultFirstTime.Size = new System.Drawing.Size(54, 23);
-            this.ResultFirstTime.TabIndex = 17;
-            this.ResultFirstTime.Text = "0.1 m";
-            // 
-            // ResultSecondTime
-            // 
-            this.ResultSecondTime.AutoSize = true;
-            this.ResultSecondTime.Location = new System.Drawing.Point(154, 113);
-            this.ResultSecondTime.Name = "ResultSecondTime";
-            this.ResultSecondTime.Size = new System.Drawing.Size(54, 23);
-            this.ResultSecondTime.TabIndex = 18;
-            this.ResultSecondTime.Text = "2.0 m";
+            this.ClearBtn.Location = new System.Drawing.Point(60, 160);
+            this.ClearBtn.Name = "ClearBtn";
+            this.ClearBtn.Size = new System.Drawing.Size(75, 37);
+            this.ClearBtn.TabIndex = 15;
+            this.ClearBtn.Text = "Xóa";
+            this.ClearBtn.UseVisualStyleBackColor = true;
             // 
             // ThirdTimeResult
             // 
@@ -276,30 +226,63 @@
             this.SaveBtn.Text = "Lưu";
             this.SaveBtn.UseVisualStyleBackColor = true;
             // 
-            // ClearBtn
+            // ResultSecondTime
             // 
-            this.ClearBtn.Location = new System.Drawing.Point(60, 160);
-            this.ClearBtn.Name = "ClearBtn";
-            this.ClearBtn.Size = new System.Drawing.Size(75, 37);
-            this.ClearBtn.TabIndex = 15;
-            this.ClearBtn.Text = "Xóa";
-            this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ResultSecondTime.AutoSize = true;
+            this.ResultSecondTime.Location = new System.Drawing.Point(154, 113);
+            this.ResultSecondTime.Name = "ResultSecondTime";
+            this.ResultSecondTime.Size = new System.Drawing.Size(54, 23);
+            this.ResultSecondTime.TabIndex = 18;
+            this.ResultSecondTime.Text = "2.0 m";
             // 
-            // chart1
+            // ResultFirstTime
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chart1.Location = new System.Drawing.Point(25, 69);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(357, 325);
-            this.chart1.TabIndex = 14;
-            this.chart1.TabStop = false;
-            this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            this.ResultFirstTime.AutoSize = true;
+            this.ResultFirstTime.Location = new System.Drawing.Point(81, 113);
+            this.ResultFirstTime.Name = "ResultFirstTime";
+            this.ResultFirstTime.Size = new System.Drawing.Size(54, 23);
+            this.ResultFirstTime.TabIndex = 17;
+            this.ResultFirstTime.Text = "0.1 m";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 23);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Kết quả";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // ThirtTimeStatus
+            // 
+            this.ThirtTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("ThirtTimeStatus.Image")));
+            this.ThirtTimeStatus.InitialImage = null;
+            this.ThirtTimeStatus.Location = new System.Drawing.Point(242, 78);
+            this.ThirtTimeStatus.Name = "ThirtTimeStatus";
+            this.ThirtTimeStatus.Size = new System.Drawing.Size(32, 32);
+            this.ThirtTimeStatus.TabIndex = 15;
+            this.ThirtTimeStatus.TabStop = false;
+            // 
+            // SecondTimeStatus
+            // 
+            this.SecondTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("SecondTimeStatus.Image")));
+            this.SecondTimeStatus.InitialImage = null;
+            this.SecondTimeStatus.Location = new System.Drawing.Point(167, 78);
+            this.SecondTimeStatus.Name = "SecondTimeStatus";
+            this.SecondTimeStatus.Size = new System.Drawing.Size(32, 32);
+            this.SecondTimeStatus.TabIndex = 14;
+            this.SecondTimeStatus.TabStop = false;
+            // 
+            // FirstTimeStatus
+            // 
+            this.FirstTimeStatus.Image = ((System.Drawing.Image)(resources.GetObject("FirstTimeStatus.Image")));
+            this.FirstTimeStatus.InitialImage = null;
+            this.FirstTimeStatus.Location = new System.Drawing.Point(94, 78);
+            this.FirstTimeStatus.Name = "FirstTimeStatus";
+            this.FirstTimeStatus.Size = new System.Drawing.Size(32, 32);
+            this.FirstTimeStatus.TabIndex = 13;
+            this.FirstTimeStatus.TabStop = false;
             // 
             // GetDataBtn
             // 
@@ -311,13 +294,29 @@
             this.GetDataBtn.Text = "Lấy kết quả";
             this.GetDataBtn.UseVisualStyleBackColor = true;
             // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Location = new System.Drawing.Point(31, 61);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.ScrollGrace = 0D;
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(379, 333);
+            this.zedGraphControl1.TabIndex = 21;
+            this.zedGraphControl1.UseExtendedPrintDialog = true;
+            this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 456);
+            this.Controls.Add(this.zedGraphControl1);
             this.Controls.Add(this.GetDataBtn);
-            this.Controls.Add(this.chart1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SchoolTextbox);
             this.Controls.Add(this.label4);
@@ -331,10 +330,9 @@
             this.Text = "ClassTextbox";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,8 +361,9 @@
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Label ResultSecondTime;
         private System.Windows.Forms.Label ResultFirstTime;
-        protected System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button GetDataBtn;
+        private System.Windows.Forms.Timer timer1;
+        private ZedGraph.ZedGraphControl zedGraphControl1;
     }
 }
 
