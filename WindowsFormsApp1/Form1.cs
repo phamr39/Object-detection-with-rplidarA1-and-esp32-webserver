@@ -7,33 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZedGraph;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        // Circle drawing definition 
-        GraphPane graphPane;
+        /* General variable defination */
+        /* General defination*/
+        private bool LockCheckboxStatus = false;
+        /* Result point position */
+        enum GrenadePosition 
+        {
+            Left, Right, Up, Down
+        }
+        private int _x;
+        private int _y;
+        private int result_size = 40;
+        private GrenadePosition _grenadePos;
+        /* Target position */
+        private int target_x = 23;
+        private int target_y = 56;
+        private int target_size = 350;
+        int TargetCenterPoint_X;
+        int TargetCenterPoint_Y;
         private void timer1_Tick(object sender, EventArgs e)
         {
         }
         public Form1()
         {
             InitializeComponent();
-            graphPane = zedGraphControl1.GraphPane;
-            DrawABackground();
+            // Create an grenade Image
+            _x = 200;
+            _y = 200;
+            _grenadePos = GrenadePosition.Down;
+            // Central Point Pos calculation
+            TargetCenterPoint_X = target_x + target_size / 2;
+            TargetCenterPoint_Y = target_y + target_size / 2;
         }
-        private void DrawABackground()
+        /* Coordinate defination
+         ^ (-)
+         |
+         |
+         |        (+)
+         --------->
+         */
+        private void GrenadeMove(int Distance, double Angle) // Distance (cm) => 1 pixel = 1cm, Angle (Radian)
         {
-            LineItem virtualAxis_X = new LineItem("Point", new double[] { -10, 0, 10 }, new double[] { 0, 0, 0 }, Color.Red, SymbolType.None);
-            LineItem virtualAxis_Y = new LineItem("Point", new double[] { 0, 0, 0 }, new double[] { -10, 0, 10 }, Color.Blue, SymbolType.None);
-            LineItem line = new LineItem("Point", new double[] { 0 }, new double[] { 0 }, Color.Black, SymbolType.Circle);
-            line.Symbol.Size = 100;
-            line.Symbol.Fill = new Fill(Color.Transparent);
-            graphPane.CurveList.Add(virtualAxis_X);
-            graphPane.CurveList.Add(virtualAxis_Y);
-            graphPane.CurveList.Add(line);
-            graphPane.AxisChange();
+            int PosX = (int)(Distance * Math.Cos(Angle));
+            int PosY = (int)(Distance * Math.Sin(Angle));
+            _x = TargetCenterPoint_X + PosX - result_size/2;
+            _y = TargetCenterPoint_Y + PosY - result_size/2;
+            Invalidate();
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -80,9 +104,31 @@ namespace WindowsFormsApp1
 
         }
 
-        private void zedGraphControl1_Load(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(new Bitmap("target_fit.png"), target_x, target_y, target_size, target_size + 1);
+            e.Graphics.DrawImage(new Bitmap("ResultPos.png"), _x, _y, result_size, result_size);
+        }
+
+        private void ClearBtn_Click(object sender, EventArgs e)
+        {
+            GrenadeMove(100, 0.7);
+        }
+
+        private void LockCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            LockCheckboxStatus = !LockCheckboxStatus;
+            SchoolTextbox.ReadOnly = LockCheckboxStatus;
+            ClassTextbox.ReadOnly = LockCheckboxStatus;
         }
     }
 }

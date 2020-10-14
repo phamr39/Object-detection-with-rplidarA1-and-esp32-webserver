@@ -53,7 +53,6 @@
             this.FirstTimeStatus = new System.Windows.Forms.PictureBox();
             this.GetDataBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
@@ -64,7 +63,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 9);
+            this.label1.Location = new System.Drawing.Point(116, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(486, 33);
             this.label1.TabIndex = 0;
@@ -75,7 +74,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(431, 148);
+            this.label2.Location = new System.Drawing.Point(379, 138);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 23);
             this.label2.TabIndex = 1;
@@ -84,7 +83,7 @@
             // NameTextbox
             // 
             this.NameTextbox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameTextbox.Location = new System.Drawing.Point(541, 145);
+            this.NameTextbox.Location = new System.Drawing.Point(489, 135);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(196, 31);
             this.NameTextbox.TabIndex = 2;
@@ -93,7 +92,7 @@
             // ClassTextbox
             // 
             this.ClassTextbox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClassTextbox.Location = new System.Drawing.Point(541, 108);
+            this.ClassTextbox.Location = new System.Drawing.Point(489, 98);
             this.ClassTextbox.Name = "ClassTextbox";
             this.ClassTextbox.Size = new System.Drawing.Size(75, 31);
             this.ClassTextbox.TabIndex = 4;
@@ -103,7 +102,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(431, 111);
+            this.label3.Location = new System.Drawing.Point(379, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 23);
             this.label3.TabIndex = 3;
@@ -113,17 +112,18 @@
             // LockCheckbox
             // 
             this.LockCheckbox.AutoSize = true;
-            this.LockCheckbox.Location = new System.Drawing.Point(659, 117);
+            this.LockCheckbox.Location = new System.Drawing.Point(607, 107);
             this.LockCheckbox.Name = "LockCheckbox";
             this.LockCheckbox.Size = new System.Drawing.Size(51, 17);
             this.LockCheckbox.TabIndex = 5;
             this.LockCheckbox.Text = "Khóa";
             this.LockCheckbox.UseVisualStyleBackColor = true;
+            this.LockCheckbox.CheckedChanged += new System.EventHandler(this.LockCheckbox_CheckedChanged);
             // 
             // SchoolTextbox
             // 
             this.SchoolTextbox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolTextbox.Location = new System.Drawing.Point(541, 71);
+            this.SchoolTextbox.Location = new System.Drawing.Point(489, 61);
             this.SchoolTextbox.Name = "SchoolTextbox";
             this.SchoolTextbox.Size = new System.Drawing.Size(196, 31);
             this.SchoolTextbox.TabIndex = 7;
@@ -133,7 +133,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(431, 74);
+            this.label4.Location = new System.Drawing.Point(379, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 23);
             this.label4.TabIndex = 6;
@@ -191,7 +191,7 @@
             this.groupBox1.Controls.Add(this.ThirdTimeBtn);
             this.groupBox1.Controls.Add(this.FirstTimeBtn);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(435, 202);
+            this.groupBox1.Location = new System.Drawing.Point(383, 192);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(302, 214);
             this.groupBox1.TabIndex = 13;
@@ -207,6 +207,7 @@
             this.ClearBtn.TabIndex = 15;
             this.ClearBtn.Text = "Xóa";
             this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
             // ThirdTimeResult
             // 
@@ -287,35 +288,23 @@
             // GetDataBtn
             // 
             this.GetDataBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetDataBtn.Location = new System.Drawing.Point(122, 400);
+            this.GetDataBtn.Location = new System.Drawing.Point(111, 412);
             this.GetDataBtn.Name = "GetDataBtn";
             this.GetDataBtn.Size = new System.Drawing.Size(142, 35);
             this.GetDataBtn.TabIndex = 20;
             this.GetDataBtn.Text = "Lấy kết quả";
             this.GetDataBtn.UseVisualStyleBackColor = true;
             // 
-            // zedGraphControl1
+            // timer1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(31, 61);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(379, 333);
-            this.zedGraphControl1.TabIndex = 21;
-            this.zedGraphControl1.UseExtendedPrintDialog = true;
-            this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 456);
-            this.Controls.Add(this.zedGraphControl1);
+            this.ClientSize = new System.Drawing.Size(712, 458);
             this.Controls.Add(this.GetDataBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SchoolTextbox);
@@ -328,6 +317,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "ClassTextbox";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).EndInit();
@@ -363,7 +354,6 @@
         private System.Windows.Forms.Label ResultFirstTime;
         private System.Windows.Forms.Button GetDataBtn;
         private System.Windows.Forms.Timer timer1;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
     }
 }
 

@@ -24,3 +24,7 @@ F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFo
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\target_fit.png
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\ResultPos.png
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.Office.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.ResolveComReference.cache
