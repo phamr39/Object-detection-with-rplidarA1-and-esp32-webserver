@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,10 @@ namespace WindowsFormsApp1
         private int target_size = 350;
         int TargetCenterPoint_X;
         int TargetCenterPoint_Y;
+        /* Excel init */
+        // Create new workbook
+        Excel.Application xlApp = new
+        Excel.Application();
         private void timer1_Tick(object sender, EventArgs e)
         {
         }
@@ -43,6 +48,41 @@ namespace WindowsFormsApp1
             // Central Point Pos calculation
             TargetCenterPoint_X = target_x + target_size / 2;
             TargetCenterPoint_Y = target_y + target_size / 2;
+            /* Excel init */
+            // Create new workbook
+            /*
+            Excel.Application xlApp = new
+            Excel.Application();
+            Excel.Workbook MyWorkbook;
+            Excel.Worksheet MyWorksheet;
+            object misValue = System.Reflection.Missing.Value;
+            */
+
+
+            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            if (xlApp == null)
+            {
+                MessageBox.Show("Excel chưa được cài đặt!");
+                return;
+            }
+
+            Excel.Workbook MyWorkbook;
+            Excel.Worksheet MyWorksheet;
+            object misValue = System.Reflection.Missing.Value;
+            MyWorkbook = xlApp.Workbooks.Add(misValue);
+            MyWorksheet = (Excel.Worksheet)MyWorkbook.Worksheets.get_Item(1);
+            // Create the first row
+            MyWorksheet.Cells[1, 1] = "STT";
+            MyWorksheet.Cells[1, 2] = "Họ và tên";
+            MyWorksheet.Cells[1, 3] = "Kết quả lần 1";
+            MyWorksheet.Cells[1, 4] = "Kết quả lần 2";
+            MyWorksheet.Cells[1, 5] = "Kết quả lần 3";
+            MyWorksheet.Cells[1, 6] = "Điểm";
+            string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "csharp-Excel.xls");
+            Console.WriteLine(DesPath);
+            MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            MyWorkbook.Close(true, misValue, misValue);
+            xlApp.Quit();
         }
         /* Coordinate defination
          ^ (-)
@@ -129,6 +169,10 @@ namespace WindowsFormsApp1
             LockCheckboxStatus = !LockCheckboxStatus;
             SchoolTextbox.ReadOnly = LockCheckboxStatus;
             ClassTextbox.ReadOnly = LockCheckboxStatus;
+        }
+
+        private void ExcelGen_Click(object sender, EventArgs e)
+        {
         }
     }
 }

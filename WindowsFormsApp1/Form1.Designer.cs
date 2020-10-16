@@ -53,6 +53,8 @@
             this.FirstTimeStatus = new System.Windows.Forms.PictureBox();
             this.GetDataBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.RefreshBtn = new System.Windows.Forms.Button();
+            this.ExcelGen = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
@@ -288,7 +290,7 @@
             // GetDataBtn
             // 
             this.GetDataBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetDataBtn.Location = new System.Drawing.Point(111, 412);
+            this.GetDataBtn.Location = new System.Drawing.Point(184, 420);
             this.GetDataBtn.Name = "GetDataBtn";
             this.GetDataBtn.Size = new System.Drawing.Size(142, 35);
             this.GetDataBtn.TabIndex = 20;
@@ -300,11 +302,34 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshBtn.Location = new System.Drawing.Point(25, 420);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(142, 35);
+            this.RefreshBtn.TabIndex = 21;
+            this.RefreshBtn.Text = "Làm mới";
+            this.RefreshBtn.UseVisualStyleBackColor = true;
+            // 
+            // ExcelGen
+            // 
+            this.ExcelGen.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExcelGen.Location = new System.Drawing.Point(468, 420);
+            this.ExcelGen.Name = "ExcelGen";
+            this.ExcelGen.Size = new System.Drawing.Size(142, 35);
+            this.ExcelGen.TabIndex = 22;
+            this.ExcelGen.Text = "Tạo file Excel";
+            this.ExcelGen.UseVisualStyleBackColor = true;
+            this.ExcelGen.Click += new System.EventHandler(this.ExcelGen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 458);
+            this.ClientSize = new System.Drawing.Size(712, 467);
+            this.Controls.Add(this.ExcelGen);
+            this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.GetDataBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SchoolTextbox);
@@ -354,6 +379,8 @@
         private System.Windows.Forms.Label ResultFirstTime;
         private System.Windows.Forms.Button GetDataBtn;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button RefreshBtn;
+        private System.Windows.Forms.Button ExcelGen;
     }
 }
 
