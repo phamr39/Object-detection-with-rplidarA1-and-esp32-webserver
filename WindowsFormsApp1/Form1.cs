@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace WindowsFormsApp1
     {
         /* General variable defination */
         /* General defination*/
+        int ScaleRatio = 50;
         private bool LockCheckboxStatus = false;
         /* Result point position */
         enum GrenadePosition 
@@ -33,8 +35,21 @@ namespace WindowsFormsApp1
         int TargetCenterPoint_Y;
         /* Excel init */
         // Create new workbook
-        Excel.Application xlApp = new
-        Excel.Application();
+        /* Excel init */
+        // Create new workbook
+        Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+        object misValue = System.Reflection.Missing.Value;
+        Excel.Workbook MyWorkbook;
+        Excel.Worksheet MyWorksheet;
+        int CurentRowWirtten = 1;
+        /* Result definition */
+        double ResultDistance = 2.0;
+        double ResultAngle = 2.0;
+        /* Radio Button Group Definition*/
+        bool isFirstTime = false;
+        bool isSecondTime = false;
+        bool isThirdTime = false;
+        List<string> ListImg;
         private void timer1_Tick(object sender, EventArgs e)
         {
         }
@@ -49,26 +64,11 @@ namespace WindowsFormsApp1
             TargetCenterPoint_X = target_x + target_size / 2;
             TargetCenterPoint_Y = target_y + target_size / 2;
             /* Excel init */
-            // Create new workbook
-            /*
-            Excel.Application xlApp = new
-            Excel.Application();
-            Excel.Workbook MyWorkbook;
-            Excel.Worksheet MyWorksheet;
-            object misValue = System.Reflection.Missing.Value;
-            */
-
-
-            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             if (xlApp == null)
             {
                 MessageBox.Show("Excel chưa được cài đặt!");
                 return;
             }
-
-            Excel.Workbook MyWorkbook;
-            Excel.Worksheet MyWorksheet;
-            object misValue = System.Reflection.Missing.Value;
             MyWorkbook = xlApp.Workbooks.Add(misValue);
             MyWorksheet = (Excel.Worksheet)MyWorkbook.Worksheets.get_Item(1);
             // Create the first row
@@ -78,11 +78,22 @@ namespace WindowsFormsApp1
             MyWorksheet.Cells[1, 4] = "Kết quả lần 2";
             MyWorksheet.Cells[1, 5] = "Kết quả lần 3";
             MyWorksheet.Cells[1, 6] = "Điểm";
-            string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "csharp-Excel.xls");
-            Console.WriteLine(DesPath);
-            MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            MyWorkbook.Close(true, misValue, misValue);
-            xlApp.Quit();
+            MyWorksheet.Cells[1, 7] = "Xếp loại";
+            /* Create Image list */
+            ListImg = new List<string>
+            {
+                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", ""), "fail-icon.jpg"),
+                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", ""), "pass-icon.jpg"),
+                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", ""), "no-data.jpg"),
+            };
+            /* Reset GUI */
+            GrenadeMove(0, 0);
+            FirstTimeStatus.Image = Image.FromFile(ListImg[2]);
+            SecondTimeStatus.Image = Image.FromFile(ListImg[2]);
+            ThirtTimeStatus.Image = Image.FromFile(ListImg[2]);
+            ResultFirstTime.Text = "No Data";
+            ResultSecondTime.Text = "No Data";
+            ResultThirdTime.Text = "No Data";
         }
         /* Coordinate defination
          ^ (-)
@@ -91,12 +102,23 @@ namespace WindowsFormsApp1
          |        (+)
          --------->
          */
-        private void GrenadeMove(int Distance, double Angle) // Distance (cm) => 1 pixel = 1cm, Angle (Radian)
+        private void GrenadeMove(double Distance, double Angle) // Distance (m), Angle (Radian)
         {
+            if(Distance > 3.5)
+            {
+                Distance = 3.5;
+            }
+            Distance = Distance * ScaleRatio;
+            Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
+            Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
             int PosX = (int)(Distance * Math.Cos(Angle));
             int PosY = (int)(Distance * Math.Sin(Angle));
+            Console.WriteLine("PosX " + PosX);
+            Console.WriteLine("PosY " + PosY);
             _x = TargetCenterPoint_X + PosX - result_size/2;
             _y = TargetCenterPoint_Y + PosY - result_size/2;
+            Console.WriteLine("_x "+ _x);
+            Console.WriteLine("_y " + _y);
             Invalidate();
         }
         private void label1_Click(object sender, EventArgs e)
@@ -161,7 +183,14 @@ namespace WindowsFormsApp1
 
         private void ClearBtn_Click(object sender, EventArgs e)
         {
-            GrenadeMove(100, 0.7);
+            GrenadeMove(0, 0);
+            FirstTimeStatus.Image = Image.FromFile(ListImg[2]);
+            SecondTimeStatus.Image = Image.FromFile(ListImg[2]);
+            ThirtTimeStatus.Image = Image.FromFile(ListImg[2]);
+            ResultFirstTime.Text = "No Data";
+            ResultSecondTime.Text = "No Data";
+            ResultThirdTime.Text = "No Data";
+            NameTextbox.Text = "";
         }
 
         private void LockCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -173,6 +202,176 @@ namespace WindowsFormsApp1
 
         private void ExcelGen_Click(object sender, EventArgs e)
         {
+            string filename = SchoolTextbox.Text + "-" + ClassTextbox.Text + "-" + "Report.xls";
+            string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
+            MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            MyWorkbook.Close(true, misValue, misValue);
+            xlApp.Quit();
+        }
+
+        private void ThirdTimeBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isFirstTime = false;
+            isSecondTime = false;
+            isThirdTime = true;
+        }
+
+        private void SecondTimeBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isFirstTime = false;
+            isSecondTime = true;
+            isThirdTime = false;
+        }
+
+        private void FirstTimeBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isFirstTime = true;
+            isSecondTime = false;
+            isThirdTime = false;
+        }
+
+        private void GetDataBtn_Click(object sender, EventArgs e)
+        {
+            if (isFirstTime == true)
+            {
+                if (ResultDistance < 3)
+                {
+                    FirstTimeStatus.Image = Image.FromFile(ListImg[1]);
+                }
+                else 
+                {
+                    FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
+                }
+                ResultFirstTime.Text = ResultDistance.ToString() + " m";
+            }
+
+            if (isSecondTime == true)
+            {
+                if (ResultDistance < 3)
+                {
+                    SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
+                }
+                else
+                {
+                    SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
+                }
+                ResultSecondTime.Text = ResultDistance.ToString() + " m";
+            }
+
+            if (isThirdTime == true)
+            {
+                if (ResultDistance < 3)
+                {
+                    ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
+                }
+                else
+                {
+                    ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
+                }
+                ResultThirdTime.Text = ResultDistance.ToString() + " m";
+            }
+        }
+
+        private void ResultFirstTime_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FirstTimeStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            double FinalScore = 0;
+            double FirstTimeScore = 0;
+            double SecondTimeScore = 0;
+            double ThirdTimeScore = 0;
+            int MeasureTime = 3;
+            CurentRowWirtten = CurentRowWirtten + 1;
+            MyWorksheet.Cells[CurentRowWirtten, 1] = CurentRowWirtten-1;
+            MyWorksheet.Cells[CurentRowWirtten, 2] = NameTextbox.Text;
+            MyWorksheet.Cells[CurentRowWirtten, 3] = ResultFirstTime.Text;
+            MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
+            MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
+            // Calculate final score
+            String[] sepe = { " " };
+            if (ResultFirstTime.Text == "")
+            {
+                FirstTimeScore = 0;
+            }
+            else
+            {
+                String[] txt1score = ResultFirstTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                double.TryParse(txt1score[0], out FirstTimeScore);
+            }
+            if (ResultSecondTime.Text == "")
+            {
+                SecondTimeScore = 0;
+            }
+            else
+            {
+                String[] txt2score = ResultSecondTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                double.TryParse(txt2score[0], out SecondTimeScore);
+            }
+            if (ResultThirdTime.Text == "")
+            {
+                ThirdTimeScore = 0;
+            }
+            else
+            {
+                String[] txt3score = ResultThirdTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                double.TryParse(txt3score[0], out ThirdTimeScore);
+            }
+            if (ResultFirstTime.Text == "No Data")
+            {
+                MeasureTime = MeasureTime - 1;
+            }
+            if (ResultSecondTime.Text == "No Data")
+            {
+                MeasureTime = MeasureTime - 1;
+            }
+            if (ResultThirdTime.Text == "No Data")
+            {
+                MeasureTime = MeasureTime - 1;
+            }
+            if (MeasureTime == 0)
+            {
+                MeasureTime = 3;
+            }
+            double AvarageResult = (FirstTimeScore + SecondTimeScore + ThirdTimeScore) / MeasureTime;
+            /* Score Map:
+             * 0-0.5m : 9-10 
+             * 0.5-1m : 8-9
+             * 1-1.5m : 7-8
+             * 1.5-2m : 6-7
+             * 2-2.5m : 5-6
+             * 2.5-3m : 4-5
+             * > 3m : Không đạt*/
+            if (ResultFirstTime.Text == "No Data" && ResultSecondTime.Text == "No Data" && ResultThirdTime.Text == "No Data")
+            {
+                FinalScore = 0;
+            }
+            else
+            { 
+                FinalScore = 10 - (AvarageResult * 2); 
+            }
+            if (FinalScore >= 4)
+            {
+                MyWorksheet.Cells[CurentRowWirtten, 6] = FinalScore.ToString();
+                MyWorksheet.Cells[CurentRowWirtten, 7] = "Đạt";
+            }
+            else
+            {
+                MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
+                MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
+            }
+        }
+
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            //GrenadeMove(3.5,0.5);
         }
     }
 }

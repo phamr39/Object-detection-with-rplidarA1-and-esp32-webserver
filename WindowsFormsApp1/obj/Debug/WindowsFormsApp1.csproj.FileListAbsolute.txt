@@ -58,3 +58,6 @@ D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreComp
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\fail-icon.jpg
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\pass-icon.jpg
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\no-data.jpg

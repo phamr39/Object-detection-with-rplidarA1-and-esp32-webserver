@@ -43,7 +43,7 @@
             this.ThirdTimeBtn = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ClearBtn = new System.Windows.Forms.Button();
-            this.ThirdTimeResult = new System.Windows.Forms.Label();
+            this.ResultThirdTime = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.ResultSecondTime = new System.Windows.Forms.Label();
             this.ResultFirstTime = new System.Windows.Forms.Label();
@@ -129,6 +129,7 @@
             this.SchoolTextbox.Name = "SchoolTextbox";
             this.SchoolTextbox.Size = new System.Drawing.Size(196, 31);
             this.SchoolTextbox.TabIndex = 7;
+            this.SchoolTextbox.Text = " ";
             this.SchoolTextbox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label4
@@ -153,6 +154,7 @@
             this.FirstTimeBtn.TabStop = true;
             this.FirstTimeBtn.Text = "Lần 1";
             this.FirstTimeBtn.UseVisualStyleBackColor = true;
+            this.FirstTimeBtn.CheckedChanged += new System.EventHandler(this.FirstTimeBtn_CheckedChanged);
             // 
             // SecondTimeBtn
             // 
@@ -165,6 +167,7 @@
             this.SecondTimeBtn.TabStop = true;
             this.SecondTimeBtn.Text = "Lần 2";
             this.SecondTimeBtn.UseVisualStyleBackColor = true;
+            this.SecondTimeBtn.CheckedChanged += new System.EventHandler(this.SecondTimeBtn_CheckedChanged);
             // 
             // ThirdTimeBtn
             // 
@@ -177,11 +180,12 @@
             this.ThirdTimeBtn.TabStop = true;
             this.ThirdTimeBtn.Text = "Lần 3";
             this.ThirdTimeBtn.UseVisualStyleBackColor = true;
+            this.ThirdTimeBtn.CheckedChanged += new System.EventHandler(this.ThirdTimeBtn_CheckedChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ClearBtn);
-            this.groupBox1.Controls.Add(this.ThirdTimeResult);
+            this.groupBox1.Controls.Add(this.ResultThirdTime);
             this.groupBox1.Controls.Add(this.SaveBtn);
             this.groupBox1.Controls.Add(this.ResultSecondTime);
             this.groupBox1.Controls.Add(this.ResultFirstTime);
@@ -211,14 +215,14 @@
             this.ClearBtn.UseVisualStyleBackColor = true;
             this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
-            // ThirdTimeResult
+            // ResultThirdTime
             // 
-            this.ThirdTimeResult.AutoSize = true;
-            this.ThirdTimeResult.Location = new System.Drawing.Point(229, 113);
-            this.ThirdTimeResult.Name = "ThirdTimeResult";
-            this.ThirdTimeResult.Size = new System.Drawing.Size(54, 23);
-            this.ThirdTimeResult.TabIndex = 19;
-            this.ThirdTimeResult.Text = "2.0 m";
+            this.ResultThirdTime.AutoSize = true;
+            this.ResultThirdTime.Location = new System.Drawing.Point(229, 113);
+            this.ResultThirdTime.Name = "ResultThirdTime";
+            this.ResultThirdTime.Size = new System.Drawing.Size(54, 23);
+            this.ResultThirdTime.TabIndex = 19;
+            this.ResultThirdTime.Text = "2.0 m";
             // 
             // SaveBtn
             // 
@@ -228,6 +232,7 @@
             this.SaveBtn.TabIndex = 14;
             this.SaveBtn.Text = "Lưu";
             this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // ResultSecondTime
             // 
@@ -246,6 +251,7 @@
             this.ResultFirstTime.Size = new System.Drawing.Size(54, 23);
             this.ResultFirstTime.TabIndex = 17;
             this.ResultFirstTime.Text = "0.1 m";
+            this.ResultFirstTime.Click += new System.EventHandler(this.ResultFirstTime_Click);
             // 
             // label5
             // 
@@ -286,6 +292,7 @@
             this.FirstTimeStatus.Size = new System.Drawing.Size(32, 32);
             this.FirstTimeStatus.TabIndex = 13;
             this.FirstTimeStatus.TabStop = false;
+            this.FirstTimeStatus.Click += new System.EventHandler(this.FirstTimeStatus_Click);
             // 
             // GetDataBtn
             // 
@@ -296,6 +303,7 @@
             this.GetDataBtn.TabIndex = 20;
             this.GetDataBtn.Text = "Lấy kết quả";
             this.GetDataBtn.UseVisualStyleBackColor = true;
+            this.GetDataBtn.Click += new System.EventHandler(this.GetDataBtn_Click);
             // 
             // timer1
             // 
@@ -311,6 +319,7 @@
             this.RefreshBtn.TabIndex = 21;
             this.RefreshBtn.Text = "Làm mới";
             this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // ExcelGen
             // 
@@ -373,7 +382,7 @@
         private System.Windows.Forms.PictureBox SecondTimeStatus;
         private System.Windows.Forms.PictureBox FirstTimeStatus;
         private System.Windows.Forms.Button ClearBtn;
-        private System.Windows.Forms.Label ThirdTimeResult;
+        private System.Windows.Forms.Label ResultThirdTime;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Label ResultSecondTime;
         private System.Windows.Forms.Label ResultFirstTime;
