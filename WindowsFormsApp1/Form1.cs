@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace WindowsFormsApp1
 {
@@ -50,6 +51,8 @@ namespace WindowsFormsApp1
         bool isSecondTime = false;
         bool isThirdTime = false;
         List<string> ListImg;
+        /* Http client definition */
+        HttpClient myClient = new HttpClient();
         private void timer1_Tick(object sender, EventArgs e)
         {
         }
@@ -372,6 +375,14 @@ namespace WindowsFormsApp1
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             //GrenadeMove(3.5,0.5);
+        }
+
+        private async void TestHttp()
+        {
+            HttpResponseMessage response = await myClient.GetAsync("localhost:8080");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseBody);
         }
     }
 }
