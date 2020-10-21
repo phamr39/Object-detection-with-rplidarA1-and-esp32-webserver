@@ -351,7 +351,7 @@ namespace WindowsFormsApp1
              * 1.5-2m : 6-7
              * 2-2.5m : 5-6
              * 2.5-3m : 4-5
-             * > 3m : Không đạt*/
+             * > 3m : Không đạt */
             if (ResultFirstTime.Text == "No Data" && ResultSecondTime.Text == "No Data" && ResultThirdTime.Text == "No Data")
             {
                 FinalScore = 0;
@@ -374,7 +374,7 @@ namespace WindowsFormsApp1
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            //GrenadeMove(3.5,0.5);
+            GrenadeMove(3.5,0.5);
         }
 
         private async void TestHttp()
@@ -384,5 +384,6 @@ namespace WindowsFormsApp1
             string responseBody = await response.Content.ReadAsStringAsync();
             Console.WriteLine(responseBody);
         }
+
     }
 }
