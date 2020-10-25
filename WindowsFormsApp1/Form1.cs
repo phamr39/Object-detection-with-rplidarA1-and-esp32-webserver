@@ -19,6 +19,8 @@ namespace WindowsFormsApp1
         /* General defination*/
         int ScaleRatio = 50;
         private bool LockCheckboxStatus = false;
+        /* Sound defination*/
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         /* Result point position */
         enum GrenadePosition 
         {
@@ -43,6 +45,7 @@ namespace WindowsFormsApp1
         Excel.Workbook MyWorkbook;
         Excel.Worksheet MyWorksheet;
         int CurentRowWirtten = 1;
+        bool isWbClosed = false;
         /* Result definition */
         double ResultDistance = 2.0;
         double ResultAngle = 2.0;
@@ -107,22 +110,29 @@ namespace WindowsFormsApp1
          */
         private void GrenadeMove(double Distance, double Angle) // Distance (m), Angle (Radian)
         {
-            if(Distance > 3.5)
+            try
             {
-                Distance = 3.5;
+                if (Distance > 3.5)
+                {
+                    Distance = 3.5;
+                }
+                Distance = Distance * ScaleRatio;
+                Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
+                Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
+                int PosX = (int)(Distance * Math.Cos(Angle));
+                int PosY = (int)(Distance * Math.Sin(Angle));
+                Console.WriteLine("PosX " + PosX);
+                Console.WriteLine("PosY " + PosY);
+                _x = TargetCenterPoint_X + PosX - result_size / 2;
+                _y = TargetCenterPoint_Y + PosY - result_size / 2;
+                Console.WriteLine("_x " + _x);
+                Console.WriteLine("_y " + _y);
+                Invalidate();
             }
-            Distance = Distance * ScaleRatio;
-            Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
-            Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
-            int PosX = (int)(Distance * Math.Cos(Angle));
-            int PosY = (int)(Distance * Math.Sin(Angle));
-            Console.WriteLine("PosX " + PosX);
-            Console.WriteLine("PosY " + PosY);
-            _x = TargetCenterPoint_X + PosX - result_size/2;
-            _y = TargetCenterPoint_Y + PosY - result_size/2;
-            Console.WriteLine("_x "+ _x);
-            Console.WriteLine("_y " + _y);
-            Invalidate();
+            catch
+            {
+                MessageBox.Show("Không thể hiển thị con trỏ, hãy thử lại", "Error Title", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -205,11 +215,54 @@ namespace WindowsFormsApp1
 
         private void ExcelGen_Click(object sender, EventArgs e)
         {
-            string filename = SchoolTextbox.Text + "-" + ClassTextbox.Text + "-" + "Report.xls";
-            string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
-            MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            MyWorkbook.Close(true, misValue, misValue);
-            xlApp.Quit();
+            try
+            {
+                string filename = SchoolTextbox.Text + "-" + ClassTextbox.Text + "-" + "Report.xls";
+                string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
+                MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                MyWorkbook.Close(true, misValue, misValue);
+                xlApp.Quit();
+                isWbClosed = true;
+            }
+            catch
+            {
+                Console.WriteLine("ExcelGen_Click error");
+                MessageBox.Show("Không tạo được file Excel, hãy kiểm tra dữ liệu đã nhập", "Error Title", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            if (isWbClosed == true)
+            {
+                try
+                {
+                    /* Excel init */
+                    // Create new workbook
+                    Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    object misValue = System.Reflection.Missing.Value;
+                    Excel.Workbook MyWorkbook;
+                    Excel.Worksheet MyWorksheet;
+                    int CurentRowWirtten = 1;
+                    if (xlApp == null)
+                    {
+                        MessageBox.Show("Excel chưa được cài đặt!");
+                        return;
+                    }
+                    MyWorkbook = xlApp.Workbooks.Add(misValue);
+                    MyWorksheet = (Excel.Worksheet)MyWorkbook.Worksheets.get_Item(1);
+                    // Create the first row
+                    MyWorksheet.Cells[1, 1] = "STT";
+                    MyWorksheet.Cells[1, 2] = "Họ và tên";
+                    MyWorksheet.Cells[1, 3] = "Kết quả lần 1";
+                    MyWorksheet.Cells[1, 4] = "Kết quả lần 2";
+                    MyWorksheet.Cells[1, 5] = "Kết quả lần 3";
+                    MyWorksheet.Cells[1, 6] = "Điểm";
+                    MyWorksheet.Cells[1, 7] = "Xếp loại";
+                    isWbClosed = false;
+                }
+                catch
+                {
+                    Console.WriteLine("Re-create Excel Error");
+                }
+            }
         }
 
         private void ThirdTimeBtn_CheckedChanged(object sender, EventArgs e)
@@ -235,43 +288,51 @@ namespace WindowsFormsApp1
 
         private void GetDataBtn_Click(object sender, EventArgs e)
         {
-            if (isFirstTime == true)
+            try
             {
-                if (ResultDistance < 3)
+                if (isFirstTime == true)
                 {
-                    FirstTimeStatus.Image = Image.FromFile(ListImg[1]);
+                    if (ResultDistance < 3)
+                    {
+                        FirstTimeStatus.Image = Image.FromFile(ListImg[1]);
+                    }
+                    else
+                    {
+                        FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
+                    }
+                    ResultFirstTime.Text = ResultDistance.ToString() + " m";
                 }
-                else 
-                {
-                    FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
-                }
-                ResultFirstTime.Text = ResultDistance.ToString() + " m";
-            }
 
-            if (isSecondTime == true)
-            {
-                if (ResultDistance < 3)
+                if (isSecondTime == true)
                 {
-                    SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
+                    if (ResultDistance < 3)
+                    {
+                        SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
+                    }
+                    else
+                    {
+                        SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
+                    }
+                    ResultSecondTime.Text = ResultDistance.ToString() + " m";
                 }
-                else
-                {
-                    SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
-                }
-                ResultSecondTime.Text = ResultDistance.ToString() + " m";
-            }
 
-            if (isThirdTime == true)
+                if (isThirdTime == true)
+                {
+                    if (ResultDistance < 3)
+                    {
+                        ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
+                    }
+                    else
+                    {
+                        ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
+                    }
+                    ResultThirdTime.Text = ResultDistance.ToString() + " m";
+                }
+            }
+            catch
             {
-                if (ResultDistance < 3)
-                {
-                    ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
-                }
-                else
-                {
-                    ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
-                }
-                ResultThirdTime.Text = ResultDistance.ToString() + " m";
+                Console.WriteLine("Get data error");
+                MessageBox.Show("Không thể lấy dữ liệu", "Error Title", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -292,89 +353,99 @@ namespace WindowsFormsApp1
             double SecondTimeScore = 0;
             double ThirdTimeScore = 0;
             int MeasureTime = 3;
-            CurentRowWirtten = CurentRowWirtten + 1;
-            MyWorksheet.Cells[CurentRowWirtten, 1] = CurentRowWirtten-1;
-            MyWorksheet.Cells[CurentRowWirtten, 2] = NameTextbox.Text;
-            MyWorksheet.Cells[CurentRowWirtten, 3] = ResultFirstTime.Text;
-            MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
-            MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
-            // Calculate final score
-            String[] sepe = { " " };
-            if (ResultFirstTime.Text == "")
+            try
             {
-                FirstTimeScore = 0;
+                CurentRowWirtten = CurentRowWirtten + 1;
+                MyWorksheet.Cells[CurentRowWirtten, 1] = CurentRowWirtten - 1;
+                MyWorksheet.Cells[CurentRowWirtten, 2] = NameTextbox.Text;
+                MyWorksheet.Cells[CurentRowWirtten, 3] = ResultFirstTime.Text;
+                MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
+                MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
+                // Calculate final score
+                String[] sepe = { " " };
+                if (ResultFirstTime.Text == "")
+                {
+                    FirstTimeScore = 0;
+                }
+                else
+                {
+                    String[] txt1score = ResultFirstTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                    double.TryParse(txt1score[0], out FirstTimeScore);
+                }
+                if (ResultSecondTime.Text == "")
+                {
+                    SecondTimeScore = 0;
+                }
+                else
+                {
+                    String[] txt2score = ResultSecondTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                    double.TryParse(txt2score[0], out SecondTimeScore);
+                }
+                if (ResultThirdTime.Text == "")
+                {
+                    ThirdTimeScore = 0;
+                }
+                else
+                {
+                    String[] txt3score = ResultThirdTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
+                    double.TryParse(txt3score[0], out ThirdTimeScore);
+                }
+                if (ResultFirstTime.Text == "No Data")
+                {
+                    MeasureTime = MeasureTime - 1;
+                }
+                if (ResultSecondTime.Text == "No Data")
+                {
+                    MeasureTime = MeasureTime - 1;
+                }
+                if (ResultThirdTime.Text == "No Data")
+                {
+                    MeasureTime = MeasureTime - 1;
+                }
+                if (MeasureTime == 0)
+                {
+                    MeasureTime = 3;
+                }
+                double AvarageResult = (FirstTimeScore + SecondTimeScore + ThirdTimeScore) / MeasureTime;
+                /* Score Map:
+                 * 0-0.5m : 9-10 
+                 * 0.5-1m : 8-9
+                 * 1-1.5m : 7-8
+                 * 1.5-2m : 6-7
+                 * 2-2.5m : 5-6
+                 * 2.5-3m : 4-5
+                 * > 3m : Không đạt */
+                if (ResultFirstTime.Text == "No Data" && ResultSecondTime.Text == "No Data" && ResultThirdTime.Text == "No Data")
+                {
+                    FinalScore = 0;
+                }
+                else
+                {
+                    FinalScore = 10 - (AvarageResult * 2);
+                }
+                if (FinalScore >= 4)
+                {
+                    MyWorksheet.Cells[CurentRowWirtten, 6] = FinalScore.ToString();
+                    MyWorksheet.Cells[CurentRowWirtten, 7] = "Đạt";
+                }
+                else
+                {
+                    MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
+                    MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
+                }
             }
-            else
+            catch
             {
-                String[] txt1score = ResultFirstTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
-                double.TryParse(txt1score[0], out FirstTimeScore);
-            }
-            if (ResultSecondTime.Text == "")
-            {
-                SecondTimeScore = 0;
-            }
-            else
-            {
-                String[] txt2score = ResultSecondTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
-                double.TryParse(txt2score[0], out SecondTimeScore);
-            }
-            if (ResultThirdTime.Text == "")
-            {
-                ThirdTimeScore = 0;
-            }
-            else
-            {
-                String[] txt3score = ResultThirdTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
-                double.TryParse(txt3score[0], out ThirdTimeScore);
-            }
-            if (ResultFirstTime.Text == "No Data")
-            {
-                MeasureTime = MeasureTime - 1;
-            }
-            if (ResultSecondTime.Text == "No Data")
-            {
-                MeasureTime = MeasureTime - 1;
-            }
-            if (ResultThirdTime.Text == "No Data")
-            {
-                MeasureTime = MeasureTime - 1;
-            }
-            if (MeasureTime == 0)
-            {
-                MeasureTime = 3;
-            }
-            double AvarageResult = (FirstTimeScore + SecondTimeScore + ThirdTimeScore) / MeasureTime;
-            /* Score Map:
-             * 0-0.5m : 9-10 
-             * 0.5-1m : 8-9
-             * 1-1.5m : 7-8
-             * 1.5-2m : 6-7
-             * 2-2.5m : 5-6
-             * 2.5-3m : 4-5
-             * > 3m : Không đạt */
-            if (ResultFirstTime.Text == "No Data" && ResultSecondTime.Text == "No Data" && ResultThirdTime.Text == "No Data")
-            {
-                FinalScore = 0;
-            }
-            else
-            { 
-                FinalScore = 10 - (AvarageResult * 2); 
-            }
-            if (FinalScore >= 4)
-            {
-                MyWorksheet.Cells[CurentRowWirtten, 6] = FinalScore.ToString();
-                MyWorksheet.Cells[CurentRowWirtten, 7] = "Đạt";
-            }
-            else
-            {
-                MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
-                MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
+                Console.WriteLine("SaveBtn Error");
+                MessageBox.Show("Không thể lưu dữ liệu vào excel, kiểm tra lại dữ liệu đã nhập", "Error Title", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             GrenadeMove(3.5,0.5);
+            player.SoundLocation = "./test_.mp3";
+            player.Play();
         }
 
         private async void TestHttp()
