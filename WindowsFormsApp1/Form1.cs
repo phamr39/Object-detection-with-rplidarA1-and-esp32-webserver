@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
@@ -58,6 +59,9 @@ namespace WindowsFormsApp1
         HttpClient myClient = new HttpClient();
         private void timer1_Tick(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(1000);
+            TestHttp();
+            // PlayAudio();
         }
         public Form1()
         {
@@ -443,17 +447,34 @@ namespace WindowsFormsApp1
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            GrenadeMove(3.5,0.5);
-            player.SoundLocation = "./test_.mp3";
+            // GrenadeMove(3.5,0.5);
+            //player.SoundLocation = "./test_.mp3";
+            //player.Play();
+            // TestHttp();
+            PlayAudio();
+        }
+        private void PlayAudio()
+        {
+            string filename = "nade_sound.wav";
+            string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(DesPath);
             player.Play();
         }
-
         private async void TestHttp()
         {
-            HttpResponseMessage response = await myClient.GetAsync("localhost:8080");
+            var payload = new Dictionary<string, string>
+            {
+              {"PostRequets", "OK"}
+            };
+
+            string strPayload = JsonConvert.SerializeObject(payload);
+            HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
+            // HttpResponseMessage response = await myClient.GetAsync("http://localhost:8000/");
+            Console.WriteLine("stringContent = " + stringContent);
+            HttpResponseMessage response = await myClient.PostAsync("http://localhost:8000/", stringContent);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseBody);
+            Console.WriteLine("responseBody = " + responseBody);
         }
 
     }

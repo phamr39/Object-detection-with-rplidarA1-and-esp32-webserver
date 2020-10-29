@@ -63,3 +63,5 @@ F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\pass-icon
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\no-data.jpg
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.WinHttp.dll
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.WMPRichPreviewLauncher.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
