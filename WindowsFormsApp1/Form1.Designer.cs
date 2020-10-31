@@ -55,10 +55,12 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.RefreshBtn = new System.Windows.Forms.Button();
             this.ExcelGen = new System.Windows.Forms.Button();
+            this.targetBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.targetBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -332,11 +334,24 @@
             this.ExcelGen.UseVisualStyleBackColor = true;
             this.ExcelGen.Click += new System.EventHandler(this.ExcelGen_Click);
             // 
+            // targetBox
+            // 
+            this.targetBox.BackColor = System.Drawing.Color.PaleGreen;
+            this.targetBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.targetBox.Image = global::WindowsFormsApp1.Properties.Resources.ResultPos;
+            this.targetBox.Location = new System.Drawing.Point(165, 166);
+            this.targetBox.Name = "targetBox";
+            this.targetBox.Size = new System.Drawing.Size(40, 40);
+            this.targetBox.TabIndex = 23;
+            this.targetBox.TabStop = false;
+            this.targetBox.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 467);
+            this.Controls.Add(this.targetBox);
             this.Controls.Add(this.ExcelGen);
             this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.GetDataBtn);
@@ -358,6 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.targetBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,6 +406,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button RefreshBtn;
         private System.Windows.Forms.Button ExcelGen;
+        private System.Windows.Forms.PictureBox targetBox;
     }
 }
 

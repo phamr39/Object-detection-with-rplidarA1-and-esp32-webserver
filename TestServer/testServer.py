@@ -8,6 +8,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 import time
 import os
+import json
 
 class S(BaseHTTPRequestHandler):
     def _set_response(self):
@@ -26,7 +27,8 @@ class S(BaseHTTPRequestHandler):
         logging.info("POST request,\nPath: %s\nHeaders:\n%s\n\nBody:\n%s\n",
                 str(self.path), str(self.headers), post_data.decode('utf-8'))
         self._set_response()
-        self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+        # self.wfile.write(json.dumps({"angle":"3.15","distance":"251"}).format(self.path).encode('utf-8'))
+        self.wfile.write(json.dumps({"angle":"2.5","distance":"121"}).encode('utf-8'))
 def run(server_class=HTTPServer, handler_class=S, port=8000):
     logging.basicConfig(level=logging.INFO)
     server_address = ('localhost', port)

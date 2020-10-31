@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.Net.Http;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
@@ -23,7 +25,7 @@ namespace WindowsFormsApp1
         /* Sound defination*/
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         /* Result point position */
-        enum GrenadePosition 
+        enum GrenadePosition
         {
             Left, Right, Up, Down
         }
@@ -59,8 +61,8 @@ namespace WindowsFormsApp1
         HttpClient myClient = new HttpClient();
         private void timer1_Tick(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(1000);
-            TestHttp();
+            System.Threading.Thread.Sleep(500);
+            HttpRequest();
             // PlayAudio();
         }
         public Form1()
@@ -104,6 +106,9 @@ namespace WindowsFormsApp1
             ResultFirstTime.Text = "No Data";
             ResultSecondTime.Text = "No Data";
             ResultThirdTime.Text = "No Data";
+            /* Remove target picture box back color */
+            Color noColor = Color.FromArgb(0, 0, 0, 0);
+            targetBox.BackColor = noColor;
         }
         /* Coordinate defination
          ^ (-)
@@ -116,22 +121,25 @@ namespace WindowsFormsApp1
         {
             try
             {
+                Distance = Distance / 100;
                 if (Distance > 3.5)
                 {
                     Distance = 3.5;
                 }
                 Distance = Distance * ScaleRatio;
-                Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
-                Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
+                // Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
+                // Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
                 int PosX = (int)(Distance * Math.Cos(Angle));
                 int PosY = (int)(Distance * Math.Sin(Angle));
-                Console.WriteLine("PosX " + PosX);
-                Console.WriteLine("PosY " + PosY);
+                // Console.WriteLine("PosX " + PosX);
+                // Console.WriteLine("PosY " + PosY);
                 _x = TargetCenterPoint_X + PosX - result_size / 2;
                 _y = TargetCenterPoint_Y + PosY - result_size / 2;
-                Console.WriteLine("_x " + _x);
-                Console.WriteLine("_y " + _y);
-                Invalidate();
+                // Console.WriteLine("_x " + _x);
+                // Console.WriteLine("_y " + _y);
+                //Invalidate();
+                targetBox.Left = _x;
+                targetBox.Top = _y;
             }
             catch
             {
@@ -195,7 +203,7 @@ namespace WindowsFormsApp1
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(new Bitmap("target_fit.png"), target_x, target_y, target_size, target_size + 1);
-            e.Graphics.DrawImage(new Bitmap("ResultPos.png"), _x, _y, result_size, result_size);
+            // e.Graphics.DrawImage(new Bitmap("ResultPos.png"), _x, _y, result_size, result_size);
         }
 
         private void ClearBtn_Click(object sender, EventArgs e)
@@ -226,6 +234,7 @@ namespace WindowsFormsApp1
                 MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 MyWorkbook.Close(true, misValue, misValue);
                 xlApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
                 isWbClosed = true;
             }
             catch
@@ -267,6 +276,9 @@ namespace WindowsFormsApp1
                     Console.WriteLine("Re-create Excel Error");
                 }
             }
+            // Close all excel process
+
+
         }
 
         private void ThirdTimeBtn_CheckedChanged(object sender, EventArgs e)
@@ -342,7 +354,7 @@ namespace WindowsFormsApp1
 
         private void ResultFirstTime_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void FirstTimeStatus_Click(object sender, EventArgs e)
@@ -451,7 +463,10 @@ namespace WindowsFormsApp1
             //player.SoundLocation = "./test_.mp3";
             //player.Play();
             // TestHttp();
-            PlayAudio();
+            // PlayAudio();
+            string jsonData = @"{'angle':'3.15','distance':'251'}";
+            GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
+            ResultDistance = GetJsonData(jsonData, "distance")/100;
         }
         private void PlayAudio()
         {
@@ -460,22 +475,48 @@ namespace WindowsFormsApp1
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(DesPath);
             player.Play();
         }
-        private async void TestHttp()
+        private async void HttpRequest()
         {
             var payload = new Dictionary<string, string>
             {
               {"PostRequets", "OK"}
             };
-
-            string strPayload = JsonConvert.SerializeObject(payload);
-            HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
-            // HttpResponseMessage response = await myClient.GetAsync("http://localhost:8000/");
-            Console.WriteLine("stringContent = " + stringContent);
-            HttpResponseMessage response = await myClient.PostAsync("http://localhost:8000/", stringContent);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("responseBody = " + responseBody);
+            try
+            {
+                string strPayload = JsonConvert.SerializeObject(payload);
+                HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
+                //HttpResponseMessage response = await myClient.GetAsync("http://localhost:8000/");
+                // HttpResponseMessage response = await myClient.PostAsync("http://192.168.52.110:80/update", stringContent);
+                HttpResponseMessage response = await myClient.PostAsync("http://localhost:8000/", stringContent);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                // Console.WriteLine("responseBody = " + responseBody);
+                var jsonData = responseBody;
+                GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
+                ResultDistance = GetJsonData(jsonData, "distance") / 100;
+            }
+            catch
+            {
+                Console.WriteLine("Exception Handle");
+            }
+        }
+        private double GetJsonData(string JsonString, string key)
+        {
+            try
+            {
+                var LidarData = JObject.Parse(JsonString);
+                var output = Convert.ToDouble(LidarData[key]);
+                return output;
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
