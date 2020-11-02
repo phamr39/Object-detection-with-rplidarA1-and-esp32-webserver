@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
         HttpClient myClient = new HttpClient();
         private void timer1_Tick(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(500);
+            // System.Threading.Thread.Sleep(100);
             HttpRequest();
             // PlayAudio();
         }
@@ -479,25 +479,26 @@ namespace WindowsFormsApp1
         {
             var payload = new Dictionary<string, string>
             {
-              {"PostRequets", "OK"}
+              // {"PostRequets", "OK"}
             };
             try
             {
                 string strPayload = JsonConvert.SerializeObject(payload);
                 HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
-                //HttpResponseMessage response = await myClient.GetAsync("http://localhost:8000/");
-                // HttpResponseMessage response = await myClient.PostAsync("http://192.168.52.110:80/update", stringContent);
-                HttpResponseMessage response = await myClient.PostAsync("http://localhost:8000/", stringContent);
-                response.EnsureSuccessStatusCode();
+                // HttpResponseMessage response = await myClient.PostAsync("http://192.168.1.67:80/update", stringContent);
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://192.168.1.67:80/update");
+                // response.EnsureSuccessStatusCode();
+                Console.WriteLine("request " + request);
+                var response = await myClient.SendAsync(request);
                 string responseBody = await response.Content.ReadAsStringAsync();
-                // Console.WriteLine("responseBody = " + responseBody);
+                Console.WriteLine("responseBody = " + responseBody);
                 var jsonData = responseBody;
                 GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
                 ResultDistance = GetJsonData(jsonData, "distance") / 100;
             }
             catch
             {
-                Console.WriteLine("Exception Handle");
+               // Console.WriteLine("Exception Handle");
             }
         }
         private double GetJsonData(string JsonString, string key)

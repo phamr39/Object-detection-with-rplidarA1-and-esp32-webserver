@@ -8,12 +8,10 @@
             "includePath": [
                 "${workspaceRoot}",
                 "C:\\Users\\admin\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.4\\**",
-                "D:\\Documents\\ArduinoData\\packages\\esp32\\hardware\\esp32\\1.0.4\\libraries",
                 "C:\\Users\\admin\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\**",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
-                "D:\\Documents\\Arduino\\libraries\\**",
-                "D:/Documents/ArduinoData/packages/esp32/hardware/esp32/1.0.4/libraries/EEPROM/src"
+                "D:\\Documents\\Arduino\\libraries\\**"
             ],
             "forcedInclude": [],
             "intelliSenseMode": "msvc-x64",
