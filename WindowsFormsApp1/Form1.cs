@@ -488,6 +488,7 @@ namespace WindowsFormsApp1
                 // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8000");
                 // response.EnsureSuccessStatusCode();
                 // Console.WriteLine("request " + request);
+                // AAAA
                 var response = await myClient.SendAsync(request);
                 string responseBody = await response.Content.ReadAsStringAsync();
                 Console.WriteLine("responseBody = " + responseBody);
