@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
     {
         /* General variable defination */
         /* General defination*/
+        int max_range_detect = 3000;
+        List<string> dataList = new List<string>();
         int ScaleRatio = 50;
         private bool LockCheckboxStatus = false;
         /* Sound defination*/
@@ -189,10 +191,6 @@ namespace WindowsFormsApp1
         private void chart1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void timer1_Tick_1(object sender, EventArgs e)
-        {
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -477,24 +475,35 @@ namespace WindowsFormsApp1
         }
         private async void HttpRequest()
         {
-            var payload = new Dictionary<string, string>
-            {
+            // var payload = new Dictionary<string, string>
+            // {
               // {"PostRequets", "OK"}
-            };
+            // };
             try
             {
-                string strPayload = JsonConvert.SerializeObject(payload);
-                HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
+                // string strPayload = JsonConvert.SerializeObject(payload);
+                // HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
                 // HttpResponseMessage response = await myClient.PostAsync("http://192.168.1.67:80/update", stringContent);
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://192.168.1.67:80/update");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://192.168.1.67:80/update");
+                // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8000");
                 // response.EnsureSuccessStatusCode();
-                Console.WriteLine("request " + request);
+                // Console.WriteLine("request " + request);
                 var response = await myClient.SendAsync(request);
                 string responseBody = await response.Content.ReadAsStringAsync();
                 Console.WriteLine("responseBody = " + responseBody);
                 var jsonData = responseBody;
-                GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
-                ResultDistance = GetJsonData(jsonData, "distance") / 100;
+                double tmpDistance = GetJsonData(jsonData, "distance");
+                if (tmpDistance < (max_range_detect + 300) && tmpDistance != 0)
+                {
+                    dataList.Add(jsonData);
+                }
+                if (dataList.Count >= 360)
+                {
+                    dataList.RemoveAt(0);
+                }
+                // Console.WriteLine("aaaaaaaaaaaa" + dataList);
+                // GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
+                // ResultDistance = GetJsonData(jsonData, "distance") / 100;
             }
             catch
             {
@@ -518,6 +527,30 @@ namespace WindowsFormsApp1
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private string get_result()
+        {
+            // Get smallest data from list
+            double smallest_distance = max_range_detect;
+            string smallest_data = @"{'angle':'0','distance':'0'}";
+            dataList.ForEach(delegate (string jsonData)
+            {
+                double tmpDistance = GetJsonData(jsonData, "distance");
+                if (tmpDistance < smallest_distance)
+                {
+                    smallest_distance = tmpDistance;
+                    smallest_data = jsonData;
+                }
+            });
+            return smallest_data;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            string jsonData = get_result();
+            GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
+            ResultDistance = GetJsonData(jsonData, "distance") / 100;
         }
     }
 }

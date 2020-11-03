@@ -56,6 +56,7 @@
             this.RefreshBtn = new System.Windows.Forms.Button();
             this.ExcelGen = new System.Windows.Forms.Button();
             this.targetBox = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirtTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondTimeStatus)).BeginInit();
@@ -346,6 +347,11 @@
             this.targetBox.TabStop = false;
             this.targetBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +413,7 @@
         private System.Windows.Forms.Button RefreshBtn;
         private System.Windows.Forms.Button ExcelGen;
         private System.Windows.Forms.PictureBox targetBox;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
