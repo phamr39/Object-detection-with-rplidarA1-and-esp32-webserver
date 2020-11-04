@@ -53,7 +53,7 @@
             this.FirstTimeStatus = new System.Windows.Forms.PictureBox();
             this.GetDataBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.RefreshBtn = new System.Windows.Forms.Button();
+            this.StartMea = new System.Windows.Forms.Button();
             this.ExcelGen = new System.Windows.Forms.Button();
             this.targetBox = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -313,16 +313,16 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // RefreshBtn
+            // StartMea
             // 
-            this.RefreshBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshBtn.Location = new System.Drawing.Point(25, 420);
-            this.RefreshBtn.Name = "RefreshBtn";
-            this.RefreshBtn.Size = new System.Drawing.Size(142, 35);
-            this.RefreshBtn.TabIndex = 21;
-            this.RefreshBtn.Text = "Làm mới";
-            this.RefreshBtn.UseVisualStyleBackColor = true;
-            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            this.StartMea.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartMea.Location = new System.Drawing.Point(25, 420);
+            this.StartMea.Name = "StartMea";
+            this.StartMea.Size = new System.Drawing.Size(142, 35);
+            this.StartMea.TabIndex = 21;
+            this.StartMea.Text = "Bắt đầu đo";
+            this.StartMea.UseVisualStyleBackColor = true;
+            this.StartMea.Click += new System.EventHandler(this.StartMea_Click);
             // 
             // ExcelGen
             // 
@@ -349,7 +349,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 1000;
+            this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
@@ -359,7 +359,7 @@
             this.ClientSize = new System.Drawing.Size(712, 467);
             this.Controls.Add(this.targetBox);
             this.Controls.Add(this.ExcelGen);
-            this.Controls.Add(this.RefreshBtn);
+            this.Controls.Add(this.StartMea);
             this.Controls.Add(this.GetDataBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SchoolTextbox);
@@ -410,7 +410,7 @@
         private System.Windows.Forms.Label ResultFirstTime;
         private System.Windows.Forms.Button GetDataBtn;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button RefreshBtn;
+        private System.Windows.Forms.Button StartMea;
         private System.Windows.Forms.Button ExcelGen;
         private System.Windows.Forms.PictureBox targetBox;
         private System.Windows.Forms.Timer timer2;

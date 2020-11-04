@@ -102,11 +102,11 @@ void setup()
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(200, "text/plain", "HELLO LIDAR A1");
   });
-  server.on("/update", HTTP_GET, [](AsyncWebServerRequest *request) {
+  server.on("/update", HTTP_POST, [](AsyncWebServerRequest *request) {
     Serial.println("Start scan data Lirad");
-    if (distance > 300)
+    if (distance > 3300)
     {
-      distance = 300;
+      distance = 3300;
       angle = 0;
     }
     doc["distance"] = distance;

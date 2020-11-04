@@ -13,6 +13,7 @@ using System.Net.Http;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.Eventing.Reader;
 
 namespace WindowsFormsApp1
 {
@@ -20,7 +21,11 @@ namespace WindowsFormsApp1
     {
         /* General variable defination */
         /* General defination*/
+        double delta_error = 300;
         int max_range_detect = 3000;
+        bool isStartMea = false;
+        bool isGetDataClicked = false;
+        bool isProcessDataDone = false;
         List<string> dataList = new List<string>();
         int ScaleRatio = 50;
         private bool LockCheckboxStatus = false;
@@ -119,26 +124,29 @@ namespace WindowsFormsApp1
          |        (+)
          --------->
          */
-        private void GrenadeMove(double Distance, double Angle) // Distance (m), Angle (Radian)
+        private void GrenadeMove(double Distance, double Angle) // Distance (mm), Angle (Radian)
         {
             try
             {
-                Distance = Distance / 100;
+                // Distance = Distance;
                 if (Distance > 3.5)
                 {
                     Distance = 3.5;
                 }
                 Distance = Distance * ScaleRatio;
+                Console.WriteLine("GrenadeMove Distance =  " + Distance);
+                Console.WriteLine("GrenadeMove Angle =  " + Angle);
                 // Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
                 // Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
                 int PosX = (int)(Distance * Math.Cos(Angle));
                 int PosY = (int)(Distance * Math.Sin(Angle));
-                // Console.WriteLine("PosX " + PosX);
-                // Console.WriteLine("PosY " + PosY);
+                Console.WriteLine("GrenadeMove Math.Sin(Angle) =  " + Math.Sin(Angle));
+                Console.WriteLine("PosX " + PosX);
+                Console.WriteLine("PosY " + PosY);
                 _x = TargetCenterPoint_X + PosX - result_size / 2;
                 _y = TargetCenterPoint_Y + PosY - result_size / 2;
-                // Console.WriteLine("_x " + _x);
-                // Console.WriteLine("_y " + _y);
+                Console.WriteLine("_x " + _x);
+                Console.WriteLine("_y " + _y);
                 //Invalidate();
                 targetBox.Left = _x;
                 targetBox.Top = _y;
@@ -275,8 +283,6 @@ namespace WindowsFormsApp1
                 }
             }
             // Close all excel process
-
-
         }
 
         private void ThirdTimeBtn_CheckedChanged(object sender, EventArgs e)
@@ -302,45 +308,52 @@ namespace WindowsFormsApp1
 
         private void GetDataBtn_Click(object sender, EventArgs e)
         {
+            Task.Delay(3000);
+            isStartMea = false;
             try
             {
-                if (isFirstTime == true)
+                Console.WriteLine("Get Data Clicked");
+                if (Process_Data() == true)
                 {
-                    if (ResultDistance < 3)
+                    if (isFirstTime == true)
                     {
-                        FirstTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        if (ResultDistance < 3)
+                        {
+                            FirstTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        }
+                        else
+                        {
+                            FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
+                        }
+                        ResultFirstTime.Text = ResultDistance.ToString() + " m";
                     }
-                    else
-                    {
-                        FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
-                    }
-                    ResultFirstTime.Text = ResultDistance.ToString() + " m";
-                }
 
-                if (isSecondTime == true)
-                {
-                    if (ResultDistance < 3)
+                    if (isSecondTime == true)
                     {
-                        SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        if (ResultDistance < 3)
+                        {
+                            SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        }
+                        else
+                        {
+                            SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
+                        }
+                        ResultSecondTime.Text = ResultDistance.ToString() + " m";
                     }
-                    else
-                    {
-                        SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
-                    }
-                    ResultSecondTime.Text = ResultDistance.ToString() + " m";
-                }
 
-                if (isThirdTime == true)
-                {
-                    if (ResultDistance < 3)
+                    if (isThirdTime == true)
                     {
-                        ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        if (ResultDistance < 3)
+                        {
+                            ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
+                        }
+                        else
+                        {
+                            ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
+                        }
+                        ResultThirdTime.Text = ResultDistance.ToString() + " m";
                     }
-                    else
-                    {
-                        ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
-                    }
-                    ResultThirdTime.Text = ResultDistance.ToString() + " m";
+                    isProcessDataDone = false;
                 }
             }
             catch
@@ -447,6 +460,9 @@ namespace WindowsFormsApp1
                     MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
                     MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
                 }
+
+                MyWorkbook.Close(0);
+                xlApp.Quit();
             }
             catch
             {
@@ -455,17 +471,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void RefreshBtn_Click(object sender, EventArgs e)
-        {
-            // GrenadeMove(3.5,0.5);
-            //player.SoundLocation = "./test_.mp3";
-            //player.Play();
-            // TestHttp();
-            // PlayAudio();
-            string jsonData = @"{'angle':'3.15','distance':'251'}";
-            GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
-            ResultDistance = GetJsonData(jsonData, "distance")/100;
-        }
         private void PlayAudio()
         {
             string filename = "nade_sound.wav";
@@ -475,31 +480,36 @@ namespace WindowsFormsApp1
         }
         private async void HttpRequest()
         {
-            // var payload = new Dictionary<string, string>
-            // {
-              // {"PostRequets", "OK"}
-            // };
             try
             {
-                // string strPayload = JsonConvert.SerializeObject(payload);
-                // HttpContent stringContent = new StringContent(strPayload, Encoding.UTF8, "application/json");
                 // HttpResponseMessage response = await myClient.PostAsync("http://192.168.1.67:80/update", stringContent);
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://192.168.1.67:80/update");
                 // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8000");
-                // response.EnsureSuccessStatusCode();
-                // Console.WriteLine("request " + request);
-                var response = await myClient.SendAsync(request);
-                string responseBody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("responseBody = " + responseBody);
-                var jsonData = responseBody;
-                double tmpDistance = GetJsonData(jsonData, "distance");
-                if (tmpDistance < (max_range_detect + 300) && tmpDistance != 0)
+                if (isStartMea == true)
                 {
-                    dataList.Add(jsonData);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://192.168.1.67:80/update");
+                    var response = await myClient.SendAsync(request);
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    var jsonData = responseBody;
+                    double tmpDistance = GetJsonData(jsonData, "distance");
+                    if (tmpDistance < (max_range_detect + 300) && tmpDistance > 150)
+                    // if (tmpDistance < (max_range_detect) && tmpDistance > 150)
+                    {
+                        dataList.Add(jsonData);
+                        // Console.WriteLine("responseBody = " + responseBody);
+                    }
                 }
-                if (dataList.Count >= 360)
+                else
                 {
-                    dataList.RemoveAt(0);
+                    try
+                    {
+                        if (dataList.Count >= 1)
+                        {
+                            dataList.Clear();
+                        }
+                    }
+                    catch
+                    {
+                    }
                 }
                 // Console.WriteLine("aaaaaaaaaaaa" + dataList);
                 // GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
@@ -529,7 +539,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private string get_result()
+        private string get_smallest_data()
         {
             // Get smallest data from list
             double smallest_distance = max_range_detect;
@@ -548,9 +558,42 @@ namespace WindowsFormsApp1
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            string jsonData = get_result();
-            GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
-            ResultDistance = GetJsonData(jsonData, "distance") / 100;
+            // string jsonData = get_result();
+            // GrenadeMove(GetJsonData(jsonData, "distance"), GetJsonData(jsonData, "angle"));
+            // ResultDistance = GetJsonData(jsonData, "distance") / 100
+            try
+            {
+                MyWorkbook.Close(0);
+                xlApp.Quit();
+            }
+            catch
+            { }
+        }
+
+        private void StartMea_Click(object sender, EventArgs e)
+        {
+            isStartMea = true;
+            Console.WriteLine("Start Measurement...");
+        }
+
+        private bool Process_Data()
+        {
+            string smallest_data = get_smallest_data();
+            double angle = GetJsonData(smallest_data, "angle") *2*3.14/360;
+            if (angle > 1.570796 && angle < 4.71238898)
+            {
+                ResultDistance = GetJsonData(smallest_data, "distance") / 1000 + delta_error / 1000;
+            }
+            else
+            {
+                ResultDistance = GetJsonData(smallest_data, "distance") / 1000 - delta_error / 1000;
+            }
+            Console.WriteLine("RbriefAngle = " + GetJsonData(smallest_data, "angle"));
+            Console.WriteLine("ResultAngle = " + angle);
+            Console.WriteLine("BriefDistance = " + GetJsonData(smallest_data, "distance"));
+            Console.WriteLine("ResultDistance = " + ResultDistance);
+            GrenadeMove(ResultDistance, angle);
+            return true;
         }
     }
 }
