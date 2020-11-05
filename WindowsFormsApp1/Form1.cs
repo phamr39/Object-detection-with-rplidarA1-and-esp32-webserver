@@ -136,8 +136,8 @@ namespace WindowsFormsApp1
                 Distance = Distance * ScaleRatio;
                 Console.WriteLine("GrenadeMove Distance =  " + Distance);
                 Console.WriteLine("GrenadeMove Angle =  " + Angle);
-                // Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
-                // Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
+                Console.WriteLine("TargetCenterPoint_X " + TargetCenterPoint_X);
+                Console.WriteLine("TargetCenterPoint_Y " + TargetCenterPoint_Y);
                 int PosX = (int)(Distance * Math.Cos(Angle));
                 int PosY = (int)(Distance * Math.Sin(Angle));
                 Console.WriteLine("GrenadeMove Math.Sin(Angle) =  " + Math.Sin(Angle));
@@ -276,6 +276,8 @@ namespace WindowsFormsApp1
                     MyWorksheet.Cells[1, 6] = "Điểm";
                     MyWorksheet.Cells[1, 7] = "Xếp loại";
                     isWbClosed = false;
+                    MyWorkbook.Close(0);
+                    xlApp.Quit();
                 }
                 catch
                 {
@@ -460,9 +462,6 @@ namespace WindowsFormsApp1
                     MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
                     MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
                 }
-
-                MyWorkbook.Close(0);
-                xlApp.Quit();
             }
             catch
             {
@@ -483,6 +482,7 @@ namespace WindowsFormsApp1
             try
             {
                 // HttpResponseMessage response = await myClient.PostAsync("http://192.168.1.67:80/update", stringContent);
+                // http://esplidar.local:80/update
                 // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8000");
                 if (isStartMea == true)
                 {
@@ -495,7 +495,7 @@ namespace WindowsFormsApp1
                     // if (tmpDistance < (max_range_detect) && tmpDistance > 150)
                     {
                         dataList.Add(jsonData);
-                        // Console.WriteLine("responseBody = " + responseBody);
+                        Console.WriteLine("responseBody = " + responseBody);
                     }
                 }
                 else

@@ -1,7 +1,7 @@
 #include <EEPROM.h>
 #include "peripherial.h"
 String ssidST = "ssid";
-String passwordST = "pass";
+String passwordST = "0373249356";
 static void fnWriteEepromString(unsigned int addr, String value)
 {
   byte lenValue = value.length();

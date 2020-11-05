@@ -340,7 +340,7 @@
             this.targetBox.BackColor = System.Drawing.Color.PaleGreen;
             this.targetBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.targetBox.Image = global::WindowsFormsApp1.Properties.Resources.ResultPos;
-            this.targetBox.Location = new System.Drawing.Point(165, 166);
+            this.targetBox.Location = new System.Drawing.Point(155, 250);
             this.targetBox.Name = "targetBox";
             this.targetBox.Size = new System.Drawing.Size(40, 40);
             this.targetBox.TabIndex = 23;
