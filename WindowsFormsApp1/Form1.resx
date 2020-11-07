@@ -118,44 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ThirtTimeStatus.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAzpJREFUWEft
-        1utLk1EcB3D/Bi/1QiOyXgVaLyqmL0rCSIOozElomWV4K0u8YFbeEpFQt7k5dWyOxJXLxArDNJUuWuZl
-        2lymUmmrdDPT0gqfjbZfzxlH59qe+Tzu6Z1fOK/GzufcnnN+butZSyTQ71lheOVfTnQdEhFdoTzDM7/y
-        hXYP/PP/iQxU26pM/fmVpp7XYmM3iAwvoYzoAv7icyj9/RSKfz2BGz/bB4vm2/IKfnRsxX9zPVLQbJSZ
-        VGKJqc9Y+acHqPEOKFpog8L5x1DwvcWYN9csytO3bsDdrC3VMBAgNat0JA4McMifa4bc2YeQPdM0c/Xr
-        g724O2apBlUEiRNrxr81AYlD1vQ94rKukYu7pRc5DAayhEOmvhHSdQ2GtKk79FYC7bnUPKBnEYfUqXq4
-        NKnUJevqvTBDHXzgWMVTvijh4uc6uKBVCDHjOOhTI3Emp50+/ukWnNfWGhK1cl/M2Udi6r3OBh7WUgC+
-        qSEQ3StcxpO0tZAwUQNxEzW5mLMPecmo2cC9YjjgHrkLNsUF2eLjN+HcuHwAc7ZB1ytbuMepPZYBBCvS
-        bPEPcjj7XmaOHZa5Y9YasfHFTio8bVQBRxuuQf7sI1o4asG3HeIQ804K0aNSf8xaIyK6Qx3hWR/vgk9C
-        kKXTQEEs5Mw0rY7XpVPjYxI4OVoVgllryojOEEfLnjlRvzwA1Dj8M3BFf98FvBIiR0QHMWtNqbFzB9We
-        J2vk4JNoHcTukmjImGyA462FNvh+RQoNXAxRIyI/zFqD3nNnBy5pSAbe8fuWse05YWuYuRhOvC03c4d5
-        9ocQxfKeOznt8YMS8F6xHUuN7sxJHCKGhf2Ysw8qJlb71GJVFeQgrCvBCH8jhPChsmzM2QdVMiRuoMKX
-        rtfTfSLYnBwMB5QZzHCNwMBVF2/BnOOgSsYZvvJuZ4hD2BCfjxnqoDKKxHXs47ypw/0lnphxnqzppgAS
-        J1jEF8PUpRzcPb2gMorECTbwI+qScNwts6TqlRxUybiy7Ixn/m9QGYUqGVRMMMANxzQ8Ae09pxNUyaBi
-        Ar3nlLhGqOIOCXJW/dRcDXrPY0YkflFjFaGWRt7tlNfrepzGze0vYCO99WRKfXoAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="SecondTimeStatus.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAzpJREFUWEft
-        1utLk1EcB3D/Bi/1QiOyXgVaLyqmL0rCSIOozElomWV4K0u8YFbeEpFQt7k5dWyOxJXLxArDNJUuWuZl
-        2lymUmmrdDPT0gqfjbZfzxlH59qe+Tzu6Z1fOK/GzufcnnN+butZSyTQ71lheOVfTnQdEhFdoTzDM7/y
-        hXYP/PP/iQxU26pM/fmVpp7XYmM3iAwvoYzoAv7icyj9/RSKfz2BGz/bB4vm2/IKfnRsxX9zPVLQbJSZ
-        VGKJqc9Y+acHqPEOKFpog8L5x1DwvcWYN9csytO3bsDdrC3VMBAgNat0JA4McMifa4bc2YeQPdM0c/Xr
-        g724O2apBlUEiRNrxr81AYlD1vQ94rKukYu7pRc5DAayhEOmvhHSdQ2GtKk79FYC7bnUPKBnEYfUqXq4
-        NKnUJevqvTBDHXzgWMVTvijh4uc6uKBVCDHjOOhTI3Emp50+/ukWnNfWGhK1cl/M2Udi6r3OBh7WUgC+
-        qSEQ3StcxpO0tZAwUQNxEzW5mLMPecmo2cC9YjjgHrkLNsUF2eLjN+HcuHwAc7ZB1ytbuMepPZYBBCvS
-        bPEPcjj7XmaOHZa5Y9YasfHFTio8bVQBRxuuQf7sI1o4asG3HeIQ804K0aNSf8xaIyK6Qx3hWR/vgk9C
-        kKXTQEEs5Mw0rY7XpVPjYxI4OVoVgllryojOEEfLnjlRvzwA1Dj8M3BFf98FvBIiR0QHMWtNqbFzB9We
-        J2vk4JNoHcTukmjImGyA462FNvh+RQoNXAxRIyI/zFqD3nNnBy5pSAbe8fuWse05YWuYuRhOvC03c4d5
-        9ocQxfKeOznt8YMS8F6xHUuN7sxJHCKGhf2Ysw8qJlb71GJVFeQgrCvBCH8jhPChsmzM2QdVMiRuoMKX
-        rtfTfSLYnBwMB5QZzHCNwMBVF2/BnOOgSsYZvvJuZ4hD2BCfjxnqoDKKxHXs47ypw/0lnphxnqzppgAS
-        J1jEF8PUpRzcPb2gMorECTbwI+qScNwts6TqlRxUybiy7Ixn/m9QGYUqGVRMMMANxzQ8Ae09pxNUyaBi
-        Ar3nlLhGqOIOCXJW/dRcDXrPY0YkflFjFaGWRt7tlNfrepzGze0vYCO99WRKfXoAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="FirstTimeStatus.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAA4RJREFUWEft
@@ -183,7 +145,10 @@
   <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>104, 17</value>
   </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>191, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>45</value>
+    <value>25</value>
   </metadata>
 </root>

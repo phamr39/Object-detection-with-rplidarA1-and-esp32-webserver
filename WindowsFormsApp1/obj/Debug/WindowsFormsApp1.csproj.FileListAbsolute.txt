@@ -65,3 +65,5 @@ F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.W
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.WMPRichPreviewLauncher.dll
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
 F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Microsoft.Office.Interop.Excel.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\stdole.dll

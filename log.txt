@@ -1,0 +1,836 @@
+'WindowsFormsApp1.exe' (CLR v4.0.30319: DefaultDomain): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: DefaultDomain): Loaded 'F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe'. Symbols loaded.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Net.Http\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Net.Http.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.CSharp\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.CSharp.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll'. Module was built without symbols.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\office.dll'. Module was built without symbols.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Dynamic\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Dynamic.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'Anonymously Hosted DynamicMethods Assembly'. 
+GrenadeMove Distance =  0
+GrenadeMove Angle =  0
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  0
+PosX 0
+PosY 0
+_x 178
+_y 211
+Start Measurement...
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+responseBody = 1041
+responseBody = 1041
+responseBody = 1547
+responseBody = 645.75
+responseBody = 645.75
+responseBody = 828
+responseBody = 828
+responseBody = 2517.75
+responseBody = 2517.75
+responseBody = 1155.5
+responseBody = 1155.5
+responseBody = 1317
+responseBody = 1317
+responseBody = 1599.75
+responseBody = 1599.75
+responseBody = 2543
+responseBody = 1805.75
+responseBody = 1805.75
+responseBody = 2176
+responseBody = 2176
+responseBody = 2176
+responseBody = 1196.25
+responseBody = 2527.75
+responseBody = 2527.75
+responseBody = 2432
+responseBody = 2887.25
+responseBody = 2887.25
+responseBody = 910.75
+responseBody = 910.75
+responseBody = 1334.75
+responseBody = 1334.75
+responseBody = 663.25
+responseBody = 663.25
+responseBody = 719.5
+responseBody = 719.5
+responseBody = 2524.25
+responseBody = 1166.25
+responseBody = 1166.25
+responseBody = 1254
+responseBody = 1015
+responseBody = 1015
+responseBody = 1743.5
+responseBody = 1743.5
+responseBody = 1743.5
+responseBody = 2236.25
+responseBody = 2236.25
+responseBody = 359.25
+responseBody = 359.25
+responseBody = 1786.75
+responseBody = 1786.75
+responseBody = 2239.25
+responseBody = 1058.5
+responseBody = 1058.5
+responseBody = 1204.75
+responseBody = 1204.75
+responseBody = 999.75
+responseBody = 999.75
+responseBody = 1330.25
+responseBody = 1330.25
+responseBody = 1799.5
+responseBody = 1799.5
+responseBody = 1318
+responseBody = 1318
+responseBody = 980.5
+responseBody = 980.5
+responseBody = 997.25
+responseBody = 1463.5
+responseBody = 1463.5
+responseBody = 1822.5
+responseBody = 1822.5
+responseBody = 1863.75
+responseBody = 1863.75
+responseBody = 1461
+responseBody = 1461
+responseBody = 1505
+responseBody = 1505
+responseBody = 1765.75
+responseBody = 1765.75
+responseBody = 1808.5
+responseBody = 1808.5
+responseBody = 1018.5
+responseBody = 1330.25
+responseBody = 1330.25
+responseBody = 1871.5
+responseBody = 1871.5
+responseBody = 1393.75
+Get Data Clicked
+RbriefAngle = 356.25
+ResultAngle = 6.21458333333333
+BriefDistance = 359.25
+ResultDistance = 0.35925
+GrenadeMove Distance =  17.9625
+GrenadeMove Angle =  6.21458333333333
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  -0.068548177052932
+PosX 17
+PosY -1
+_x 195
+_y 210
+'WindowsFormsApp1.exe' (CLR v4.0.30319: WindowsFormsApp1.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Accessibility\v4.0_4.0.0.0__b03f5f7f11d50a3a\Accessibility.dll'. 
+Start Measurement...
+responseBody = 1238
+responseBody = 1238
+responseBody = 1238
+responseBody = 1238
+responseBody = 1008
+responseBody = 1615.25
+responseBody = 1615.25
+responseBody = 520.25
+responseBody = 1963.5
+responseBody = 1963.5
+responseBody = 1319.75
+responseBody = 1319.75
+responseBody = 1259.25
+responseBody = 1259.25
+responseBody = 2218
+responseBody = 2218
+responseBody = 1116.5
+responseBody = 1116.5
+responseBody = 2522.5
+responseBody = 2522.5
+responseBody = 1246
+responseBody = 1246
+responseBody = 1167.75
+responseBody = 1167.75
+responseBody = 207.5
+responseBody = 207.5
+responseBody = 207.5
+responseBody = 1095.25
+responseBody = 1095.25
+responseBody = 2532
+responseBody = 2532
+responseBody = 1003.25
+responseBody = 1003.25
+responseBody = 1978
+responseBody = 1978
+responseBody = 636
+responseBody = 636
+responseBody = 2517.25
+responseBody = 2517.25
+responseBody = 1874.25
+responseBody = 2438.25
+responseBody = 555.75
+responseBody = 555.75
+responseBody = 1943
+responseBody = 827
+responseBody = 827
+responseBody = 1610.5
+responseBody = 1610.5
+responseBody = 521.75
+responseBody = 521.75
+responseBody = 1019
+responseBody = 1019
+responseBody = 1019
+responseBody = 1014.5
+responseBody = 1014.5
+responseBody = 1243.75
+responseBody = 1243.75
+responseBody = 1459
+responseBody = 1459
+responseBody = 2242
+responseBody = 2242
+responseBody = 1046.5
+responseBody = 1046.5
+responseBody = 1482.5
+responseBody = 1482.5
+responseBody = 1482.5
+responseBody = 1808
+responseBody = 1808
+responseBody = 1424.75
+responseBody = 1424.75
+responseBody = 1076.75
+responseBody = 1076.75
+responseBody = 359.75
+responseBody = 359.75
+responseBody = 2286.75
+responseBody = 2286.75
+responseBody = 2286.75
+responseBody = 1365
+responseBody = 1365
+responseBody = 359.5
+responseBody = 359.5
+responseBody = 1117
+responseBody = 1117
+responseBody = 1831
+responseBody = 1831
+responseBody = 1786.25
+responseBody = 1786.25
+responseBody = 949.75
+responseBody = 949.75
+responseBody = 1295.25
+responseBody = 1295.25
+responseBody = 1211.5
+responseBody = 1211.5
+responseBody = 1545.5
+responseBody = 1545.5
+responseBody = 1263.75
+responseBody = 1263.75
+responseBody = 1832.25
+responseBody = 1832.25
+responseBody = 1314
+responseBody = 1314
+Get Data Clicked
+RbriefAngle = 31.46875
+ResultAngle = 0.548954861111111
+BriefDistance = 207.5
+ResultDistance = 0.2075
+GrenadeMove Distance =  10.375
+GrenadeMove Angle =  0.548954861111111
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  0.521795937091531
+PosX 8
+PosY 5
+_x 186
+_y 216
+The thread 0x2350 has exited with code 0 (0x0).
+The thread 0x32e8 has exited with code 0 (0x0).
+The thread 0x32f8 has exited with code 0 (0x0).
+The thread 0x2aac has exited with code 0 (0x0).
+The thread 0x3548 has exited with code 0 (0x0).
+Start Measurement...
+responseBody = 1040.25
+responseBody = 1040.25
+responseBody = 1052.5
+responseBody = 1052.5
+responseBody = 1001
+responseBody = 1001
+responseBody = 1077.25
+responseBody = 1077.25
+responseBody = 320.5
+responseBody = 320.5
+responseBody = 2196.25
+responseBody = 2752.5
+responseBody = 2752.5
+responseBody = 1631.75
+responseBody = 1547.25
+responseBody = 1547.25
+responseBody = 2083.25
+responseBody = 2083.25
+responseBody = 1433.25
+responseBody = 1433.25
+responseBody = 1405
+responseBody = 1612.25
+responseBody = 1612.25
+responseBody = 1612.25
+responseBody = 1659.25
+responseBody = 1414.5
+responseBody = 1414.5
+responseBody = 1790.75
+responseBody = 1790.75
+responseBody = 1333.5
+responseBody = 1333.5
+responseBody = 1302.75
+responseBody = 1302.75
+responseBody = 2981
+responseBody = 1014.75
+responseBody = 1014.75
+responseBody = 1014.75
+responseBody = 994
+responseBody = 2046.75
+responseBody = 2046.75
+responseBody = 2087.75
+responseBody = 2087.75
+responseBody = 1366.75
+responseBody = 1366.75
+responseBody = 1984.5
+responseBody = 1984.5
+responseBody = 1765.5
+responseBody = 1765.5
+responseBody = 1785.25
+responseBody = 1118.5
+responseBody = 1118.5
+responseBody = 2624.5
+responseBody = 2624.5
+responseBody = 2944
+responseBody = 2944
+responseBody = 2944
+responseBody = 1062
+responseBody = 1062
+responseBody = 2526
+responseBody = 2526
+responseBody = 320.5
+responseBody = 320.5
+responseBody = 2283.25
+responseBody = 2283.25
+responseBody = 1474
+responseBody = 1474
+responseBody = 1848.25
+responseBody = 1848.25
+responseBody = 1170.25
+responseBody = 1170.25
+responseBody = 1306.25
+responseBody = 1306.25
+responseBody = 1400.5
+responseBody = 1400.5
+responseBody = 1154.5
+responseBody = 1168.5
+responseBody = 1168.5
+responseBody = 1007.25
+responseBody = 1070
+responseBody = 1070
+responseBody = 1631.25
+responseBody = 1631.25
+responseBody = 2519.5
+responseBody = 2519.5
+responseBody = 1814
+responseBody = 1814
+responseBody = 1847.5
+responseBody = 1847.5
+Get Data Clicked
+RbriefAngle = 237.4531
+ResultAngle = 4.14223741111111
+BriefDistance = 320.5
+ResultDistance = 0.3205
+GrenadeMove Distance =  16.025
+GrenadeMove Angle =  4.14223741111111
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  -0.841819173854357
+PosX -8
+PosY -13
+_x 170
+_y 198
+The thread 0x16bc has exited with code 0 (0x0).
+The thread 0x2988 has exited with code 0 (0x0).
+The thread 0x2d74 has exited with code 0 (0x0).
+The thread 0x3774 has exited with code 0 (0x0).
+The thread 0x650 has exited with code 0 (0x0).
+The thread 0x2c88 has exited with code 0 (0x0).
+The thread 0x2bf8 has exited with code 0 (0x0).
+Start Measurement...
+responseBody = 1278.25
+responseBody = 1278.25
+responseBody = 1090.75
+responseBody = 1090.75
+responseBody = 2677
+responseBody = 2677
+responseBody = 989.75
+responseBody = 989.75
+responseBody = 1437.75
+responseBody = 1437.75
+responseBody = 1296.25
+responseBody = 1296.25
+responseBody = 1407.25
+responseBody = 1977.25
+responseBody = 1977.25
+responseBody = 1305.5
+responseBody = 945.75
+responseBody = 945.75
+responseBody = 1617.25
+responseBody = 1617.25
+responseBody = 1172.5
+responseBody = 1172.5
+responseBody = 1605.5
+responseBody = 1605.5
+responseBody = 1123.75
+responseBody = 1123.75
+responseBody = 360
+responseBody = 360
+responseBody = 360
+responseBody = 1535
+responseBody = 1535
+responseBody = 2523
+responseBody = 2523
+responseBody = 1251
+responseBody = 1251
+responseBody = 1041.5
+responseBody = 1041.5
+responseBody = 2083.25
+responseBody = 2083.25
+responseBody = 1044
+responseBody = 1044
+responseBody = 2396
+responseBody = 2396
+responseBody = 1009.5
+responseBody = 1489.75
+responseBody = 1489.75
+responseBody = 1806
+responseBody = 591.5
+responseBody = 591.5
+responseBody = 1606.75
+responseBody = 1606.75
+responseBody = 2892.5
+responseBody = 2892.5
+responseBody = 259.25
+responseBody = 259.25
+responseBody = 1112
+responseBody = 1768
+responseBody = 1768
+responseBody = 1499.5
+responseBody = 1499.5
+responseBody = 2210.5
+responseBody = 1061.5
+responseBody = 1061.5
+responseBody = 1075.5
+responseBody = 1505.5
+responseBody = 1505.5
+responseBody = 2087.25
+responseBody = 2087.25
+responseBody = 1418.25
+responseBody = 1418.25
+responseBody = 1301.25
+responseBody = 1301.25
+responseBody = 1263
+responseBody = 1263
+responseBody = 473.25
+responseBody = 473.25
+responseBody = 1365
+responseBody = 1365
+responseBody = 2244.25
+responseBody = 2244.25
+responseBody = 1047.75
+responseBody = 1047.75
+responseBody = 2524.5
+responseBody = 2524.5
+responseBody = 1419
+responseBody = 1419
+responseBody = 2111.25
+responseBody = 2111.25
+responseBody = 1069.75
+responseBody = 1288.5
+responseBody = 1288.5
+responseBody = 686.75
+responseBody = 686.75
+responseBody = 2258.75
+responseBody = 2301.25
+responseBody = 2301.25
+responseBody = 1352
+responseBody = 1352
+Get Data Clicked
+RbriefAngle = 124.0313
+ResultAngle = 2.16365712222222
+BriefDistance = 259.25
+ResultDistance = 0.25925
+GrenadeMove Distance =  12.9625
+GrenadeMove Angle =  2.16365712222222
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  0.829345645931443
+PosX -7
+PosY 10
+_x 171
+_y 221
+The thread 0x2638 has exited with code 0 (0x0).
+The thread 0x37b8 has exited with code 0 (0x0).
+The thread 0x3320 has exited with code 0 (0x0).
+The thread 0x918 has exited with code 0 (0x0).
+Start Measurement...
+responseBody = 1080.5
+responseBody = 1080.5
+responseBody = 974
+responseBody = 974
+responseBody = 1048.25
+responseBody = 1048.5
+responseBody = 1048.5
+responseBody = 360
+responseBody = 360
+responseBody = 1244
+responseBody = 1244
+responseBody = 2542.75
+responseBody = 2542.75
+responseBody = 1048.25
+responseBody = 1048.25
+responseBody = 2518.25
+responseBody = 2518.25
+responseBody = 1359.5
+responseBody = 1409.25
+responseBody = 1409.25
+responseBody = 1005.75
+responseBody = 1005.75
+responseBody = 955.25
+responseBody = 955.25
+responseBody = 1007
+responseBody = 1007
+responseBody = 1415.25
+responseBody = 1361.75
+responseBody = 1361.75
+responseBody = 2500.5
+responseBody = 2500.5
+responseBody = 358.75
+responseBody = 358.75
+responseBody = 1553.5
+responseBody = 1553.5
+responseBody = 1402.75
+responseBody = 1402.75
+responseBody = 1033
+responseBody = 1033
+responseBody = 2595.25
+responseBody = 2595.25
+responseBody = 1003.5
+responseBody = 1003.5
+responseBody = 1790
+responseBody = 1790
+responseBody = 1790
+responseBody = 2398
+responseBody = 2398
+responseBody = 2111.25
+responseBody = 2111.25
+responseBody = 1080.75
+responseBody = 1080.75
+responseBody = 1307
+responseBody = 1307
+responseBody = 1454.25
+responseBody = 1454.25
+responseBody = 2553.75
+responseBody = 2553.75
+responseBody = 2234.5
+responseBody = 2234.5
+responseBody = 1529.25
+responseBody = 1529.25
+responseBody = 1504.5
+responseBody = 1504.5
+responseBody = 2239.25
+responseBody = 2239.25
+responseBody = 1869.25
+responseBody = 1869.25
+responseBody = 1100.75
+responseBody = 1100.75
+responseBody = 359
+responseBody = 2533.75
+responseBody = 2533.75
+responseBody = 1783
+responseBody = 1783
+responseBody = 1037.25
+responseBody = 1037.25
+responseBody = 945
+responseBody = 945
+responseBody = 1456
+responseBody = 1456
+responseBody = 2944
+responseBody = 2944
+responseBody = 1293.25
+responseBody = 1293.25
+responseBody = 1794.25
+responseBody = 1794.25
+responseBody = 1800.75
+responseBody = 1800.75
+responseBody = 1868.25
+responseBody = 1868.25
+responseBody = 358.5
+responseBody = 358.5
+responseBody = 359
+responseBody = 1457.25
+responseBody = 1457.25
+responseBody = 2523.75
+responseBody = 2523.75
+responseBody = 2965.75
+responseBody = 2965.75
+responseBody = 1499.5
+responseBody = 1499.5
+responseBody = 463.5
+responseBody = 463.5
+responseBody = 1841
+responseBody = 1841
+responseBody = 2432
+responseBody = 2432
+responseBody = 938.75
+responseBody = 2507.75
+responseBody = 2507.75
+responseBody = 1940.25
+responseBody = 1940.25
+responseBody = 2000.5
+responseBody = 2000.5
+responseBody = 2246.75
+responseBody = 1075.5
+responseBody = 1075.5
+responseBody = 2496.25
+responseBody = 2496.25
+responseBody = 1118
+responseBody = 1118
+responseBody = 1821.75
+responseBody = 1821.75
+responseBody = 1766
+responseBody = 1766
+responseBody = 2585.25
+responseBody = 2585.25
+responseBody = 1549.75
+responseBody = 1549.75
+responseBody = 360
+responseBody = 360
+responseBody = 2344.25
+responseBody = 2344.25
+responseBody = 1088
+responseBody = 1088
+responseBody = 1615.5
+responseBody = 1615.5
+responseBody = 2432
+responseBody = 2432
+responseBody = 2201.5
+responseBody = 1401.5
+responseBody = 1401.5
+responseBody = 2086.25
+responseBody = 2086.25
+responseBody = 1391.25
+responseBody = 370.75
+responseBody = 370.75
+responseBody = 1932.25
+responseBody = 1932.25
+responseBody = 1936.25
+responseBody = 1936.25
+responseBody = 1195.25
+responseBody = 1195.25
+responseBody = 1102.5
+responseBody = 1102.5
+responseBody = 1097.25
+responseBody = 1097.25
+responseBody = 1280
+responseBody = 1280
+responseBody = 1316.25
+responseBody = 1316.25
+responseBody = 1508.5
+responseBody = 1508.5
+responseBody = 1388.5
+responseBody = 1388.5
+responseBody = 1642.5
+responseBody = 1642.5
+responseBody = 1255.75
+responseBody = 1632.5
+responseBody = 1632.5
+responseBody = 2523
+responseBody = 2523
+responseBody = 2238.75
+responseBody = 2238.75
+responseBody = 1046.5
+responseBody = 1046.5
+responseBody = 2368.5
+responseBody = 2368.5
+responseBody = 1239.75
+responseBody = 1239.75
+responseBody = 1498.5
+responseBody = 1498.5
+Get Data Clicked
+RbriefAngle = 1.484375
+ResultAngle = 0.0258940972222222
+BriefDistance = 358.5
+ResultDistance = 0.3585
+GrenadeMove Distance =  17.925
+GrenadeMove Angle =  0.0258940972222222
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  0.0258912036354354
+PosX 17
+PosY 0
+_x 195
+_y 211
+The thread 0x3990 has exited with code 0 (0x0).
+The thread 0x39b8 has exited with code 0 (0x0).
+Start Measurement...
+responseBody = 2525
+responseBody = 2525
+responseBody = 1091
+responseBody = 1091
+responseBody = 2235.25
+responseBody = 2235.25
+responseBody = 2552.5
+responseBody = 2552.5
+responseBody = 2080.75
+responseBody = 2080.75
+responseBody = 1074
+responseBody = 2206.25
+responseBody = 2206.25
+responseBody = 1871.5
+responseBody = 1399.25
+responseBody = 1399.25
+responseBody = 2432
+responseBody = 2432
+responseBody = 1454.25
+responseBody = 1454.25
+responseBody = 920.25
+responseBody = 920.25
+responseBody = 1346
+responseBody = 2077.5
+responseBody = 2077.5
+responseBody = 1609.75
+responseBody = 1609.75
+responseBody = 1652.5
+responseBody = 1652.5
+responseBody = 2203
+responseBody = 1509.75
+responseBody = 1509.75
+responseBody = 358.5
+responseBody = 358.5
+responseBody = 1819
+responseBody = 1819
+responseBody = 1872.75
+responseBody = 1872.75
+responseBody = 1450.5
+responseBody = 1635.75
+responseBody = 1635.75
+responseBody = 360
+responseBody = 360
+responseBody = 2244.75
+responseBody = 2244.75
+responseBody = 1553.75
+responseBody = 1553.75
+responseBody = 2457
+responseBody = 2457
+responseBody = 2098
+responseBody = 2098
+responseBody = 1858.75
+responseBody = 1858.75
+responseBody = 1331
+responseBody = 2514.25
+responseBody = 2514.25
+responseBody = 1789.5
+responseBody = 1789.5
+responseBody = 2237
+responseBody = 356.25
+responseBody = 356.25
+responseBody = 1337.25
+responseBody = 1337.25
+responseBody = 1436.75
+responseBody = 1436.75
+responseBody = 1204
+responseBody = 1204
+responseBody = 993.75
+responseBody = 993.75
+responseBody = 1071
+responseBody = 1780.25
+responseBody = 1406.25
+responseBody = 1390.75
+responseBody = 1390.75
+responseBody = 1385.5
+responseBody = 1385.5
+responseBody = 1645.75
+responseBody = 1480.75
+responseBody = 1480.75
+responseBody = 1173
+responseBody = 1173
+responseBody = 1173
+responseBody = 1821.5
+responseBody = 1821.5
+responseBody = 1145.25
+responseBody = 2226.25
+responseBody = 2226.25
+responseBody = 1242.75
+responseBody = 1242.75
+responseBody = 1274
+responseBody = 1274
+responseBody = 2208
+responseBody = 2208
+responseBody = 2518.75
+responseBody = 2518.75
+responseBody = 1551.25
+responseBody = 1100.25
+responseBody = 1100.25
+responseBody = 2668.25
+responseBody = 2668.25
+responseBody = 370.75
+responseBody = 370.75
+responseBody = 1933.5
+responseBody = 956
+responseBody = 956
+responseBody = 1547.75
+responseBody = 1547.75
+responseBody = 1616.25
+responseBody = 1616.25
+responseBody = 530.75
+responseBody = 530.75
+responseBody = 1871.25
+responseBody = 1900
+responseBody = 1900
+responseBody = 2895.5
+responseBody = 2895.5
+responseBody = 1425.25
+responseBody = 1425.25
+responseBody = 1236.75
+responseBody = 1236.75
+responseBody = 359.5
+responseBody = 359.5
+responseBody = 1590
+responseBody = 360
+responseBody = 360
+responseBody = 2181.25
+responseBody = 1558.5
+responseBody = 1558.5
+responseBody = 1010.5
+responseBody = 2948
+responseBody = 2948
+responseBody = 2940.5
+responseBody = 2940.5
+responseBody = 2899.75
+responseBody = 2899.75
+responseBody = 1548.5
+responseBody = 1548.5
+responseBody = 1950.75
+responseBody = 1950.75
+responseBody = 1154.75
+responseBody = 1154.75
+Get Data Clicked
+RbriefAngle = 353.4219
+ResultAngle = 6.1652487
+BriefDistance = 356.25
+ResultDistance = 0.35625
+GrenadeMove Distance =  17.8125
+GrenadeMove Angle =  6.1652487
+TargetCenterPoint_X 198
+TargetCenterPoint_Y 231
+GrenadeMove Math.Sin(Angle) =  -0.11766339968865
+PosX 17
+PosY -2
+_x 195
+_y 209
+The thread 0x3b8 has exited with code 0 (0x0).
+The thread 0xe48 has exited with code 0 (0x0).
+The thread 0x381c has exited with code 0 (0x0).
+The thread 0x39bc has exited with code 0 (0x0).
+The program '[11376] WindowsFormsApp1.exe' has exited with code -1 (0xffffffff).

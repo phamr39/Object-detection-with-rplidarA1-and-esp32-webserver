@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
     {
         /* General variable defination */
         /* General defination*/
-        double delta_error = 300;
+        double delta_error = 0;
         int max_range_detect = 3000;
         bool isStartMea = false;
         bool isGetDataClicked = false;
@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
         bool isWbClosed = false;
         /* Result definition */
         double ResultDistance = 2.0;
-        double ResultAngle = 2.0;
+        // double ResultAngle = 2.0;
         /* Radio Button Group Definition*/
         bool isFirstTime = false;
         bool isSecondTime = false;
@@ -93,11 +93,9 @@ namespace WindowsFormsApp1
             // Create the first row
             MyWorksheet.Cells[1, 1] = "STT";
             MyWorksheet.Cells[1, 2] = "Họ và tên";
-            MyWorksheet.Cells[1, 3] = "Kết quả lần 1";
-            MyWorksheet.Cells[1, 4] = "Kết quả lần 2";
-            MyWorksheet.Cells[1, 5] = "Kết quả lần 3";
-            MyWorksheet.Cells[1, 6] = "Điểm";
-            MyWorksheet.Cells[1, 7] = "Xếp loại";
+            MyWorksheet.Cells[1, 3] = "Kết quả";
+            MyWorksheet.Cells[1, 4] = "Thành tích tốt nhất";
+            MyWorksheet.Cells[1, 5] = "Xếp loại";
             /* Create Image list */
             ListImg = new List<string>
             {
@@ -108,11 +106,11 @@ namespace WindowsFormsApp1
             /* Reset GUI */
             GrenadeMove(0, 0);
             FirstTimeStatus.Image = Image.FromFile(ListImg[2]);
-            SecondTimeStatus.Image = Image.FromFile(ListImg[2]);
-            ThirtTimeStatus.Image = Image.FromFile(ListImg[2]);
-            ResultFirstTime.Text = "No Data";
-            ResultSecondTime.Text = "No Data";
-            ResultThirdTime.Text = "No Data";
+            // SecondTimeStatus.Image = Image.FromFile(ListImg[2]);
+            // ThirtTimeStatus.Image = Image.FromFile(ListImg[2]);
+            // ResultFirstTime.Text = "No Data";
+            // ResultSecondTime.Text = "No Data";
+            // ResultThirdTime.Text = "No Data";
             /* Remove target picture box back color */
             Color noColor = Color.FromArgb(0, 0, 0, 0);
             targetBox.BackColor = noColor;
@@ -203,7 +201,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+        
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -216,11 +214,7 @@ namespace WindowsFormsApp1
         {
             GrenadeMove(0, 0);
             FirstTimeStatus.Image = Image.FromFile(ListImg[2]);
-            SecondTimeStatus.Image = Image.FromFile(ListImg[2]);
-            ThirtTimeStatus.Image = Image.FromFile(ListImg[2]);
             ResultFirstTime.Text = "No Data";
-            ResultSecondTime.Text = "No Data";
-            ResultThirdTime.Text = "No Data";
             NameTextbox.Text = "";
         }
 
@@ -242,6 +236,7 @@ namespace WindowsFormsApp1
                 xlApp.Quit();
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
                 isWbClosed = true;
+                MessageBox.Show("Đã lưu file Excel", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
@@ -270,11 +265,9 @@ namespace WindowsFormsApp1
                     // Create the first row
                     MyWorksheet.Cells[1, 1] = "STT";
                     MyWorksheet.Cells[1, 2] = "Họ và tên";
-                    MyWorksheet.Cells[1, 3] = "Kết quả lần 1";
-                    MyWorksheet.Cells[1, 4] = "Kết quả lần 2";
-                    MyWorksheet.Cells[1, 5] = "Kết quả lần 3";
-                    MyWorksheet.Cells[1, 6] = "Điểm";
-                    MyWorksheet.Cells[1, 7] = "Xếp loại";
+                    MyWorksheet.Cells[1, 3] = "Kết quả";
+                    MyWorksheet.Cells[1, 4] = "Điểm";
+                    MyWorksheet.Cells[1, 5] = "Xếp loại";
                     isWbClosed = false;
                     MyWorkbook.Close(0);
                     xlApp.Quit();
@@ -310,14 +303,14 @@ namespace WindowsFormsApp1
 
         private void GetDataBtn_Click(object sender, EventArgs e)
         {
-            Task.Delay(3000);
+            // Task.Delay(3000);
             isStartMea = false;
             try
             {
                 Console.WriteLine("Get Data Clicked");
                 if (Process_Data() == true)
                 {
-                    if (isFirstTime == true)
+                    if (true == true)
                     {
                         if (ResultDistance < 3)
                         {
@@ -327,35 +320,25 @@ namespace WindowsFormsApp1
                         {
                             FirstTimeStatus.Image = Image.FromFile(ListImg[0]);
                         }
-                        ResultFirstTime.Text = ResultDistance.ToString() + " m";
-                    }
-
-                    if (isSecondTime == true)
-                    {
-                        if (ResultDistance < 3)
-                        {
-                            SecondTimeStatus.Image = Image.FromFile(ListImg[1]);
-                        }
-                        else
-                        {
-                            SecondTimeStatus.Image = Image.FromFile(ListImg[0]);
-                        }
-                        ResultSecondTime.Text = ResultDistance.ToString() + " m";
-                    }
-
-                    if (isThirdTime == true)
-                    {
-                        if (ResultDistance < 3)
-                        {
-                            ThirtTimeStatus.Image = Image.FromFile(ListImg[1]);
-                        }
-                        else
-                        {
-                            ThirtTimeStatus.Image = Image.FromFile(ListImg[0]);
-                        }
-                        ResultThirdTime.Text = ResultDistance.ToString() + " m";
+                        ResultFirstTime.Text = Math.Abs(ResultDistance).ToString() + " m";
                     }
                     isProcessDataDone = false;
+                }
+                if ((ResultDistance >= 0) && (ResultDistance < 1))
+                {
+                    GoodBtn.Checked = true;
+                }
+                else if ((ResultDistance >= 1) && (ResultDistance < 2))
+                {
+                    MidBtn.Checked = true;
+                }
+                else if ((ResultDistance >= 2) && (ResultDistance < 3))
+                {
+                    OKBtn.Checked = true;
+                }
+                else
+                {
+                    failBtn.Checked = true;
                 }
             }
             catch
@@ -381,15 +364,15 @@ namespace WindowsFormsApp1
             double FirstTimeScore = 0;
             double SecondTimeScore = 0;
             double ThirdTimeScore = 0;
-            int MeasureTime = 3;
+            // int MeasureTime = 3;
             try
             {
                 CurentRowWirtten = CurentRowWirtten + 1;
                 MyWorksheet.Cells[CurentRowWirtten, 1] = CurentRowWirtten - 1;
                 MyWorksheet.Cells[CurentRowWirtten, 2] = NameTextbox.Text;
                 MyWorksheet.Cells[CurentRowWirtten, 3] = ResultFirstTime.Text;
-                MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
-                MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
+                // MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
+                // MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
                 // Calculate final score
                 String[] sepe = { " " };
                 if (ResultFirstTime.Text == "")
@@ -401,66 +384,52 @@ namespace WindowsFormsApp1
                     String[] txt1score = ResultFirstTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
                     double.TryParse(txt1score[0], out FirstTimeScore);
                 }
-                if (ResultSecondTime.Text == "")
-                {
-                    SecondTimeScore = 0;
-                }
-                else
-                {
-                    String[] txt2score = ResultSecondTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
-                    double.TryParse(txt2score[0], out SecondTimeScore);
-                }
-                if (ResultThirdTime.Text == "")
-                {
-                    ThirdTimeScore = 0;
-                }
-                else
-                {
-                    String[] txt3score = ResultThirdTime.Text.Split(sepe, 2, StringSplitOptions.RemoveEmptyEntries);
-                    double.TryParse(txt3score[0], out ThirdTimeScore);
-                }
+                double AvarageResult = Math.Min(Math.Min(FirstTimeScore, SecondTimeScore), ThirdTimeScore);
                 if (ResultFirstTime.Text == "No Data")
-                {
-                    MeasureTime = MeasureTime - 1;
-                }
-                if (ResultSecondTime.Text == "No Data")
-                {
-                    MeasureTime = MeasureTime - 1;
-                }
-                if (ResultThirdTime.Text == "No Data")
-                {
-                    MeasureTime = MeasureTime - 1;
-                }
-                if (MeasureTime == 0)
-                {
-                    MeasureTime = 3;
-                }
-                double AvarageResult = (FirstTimeScore + SecondTimeScore + ThirdTimeScore) / MeasureTime;
-                /* Score Map:
-                 * 0-0.5m : 9-10 
-                 * 0.5-1m : 8-9
-                 * 1-1.5m : 7-8
-                 * 1.5-2m : 6-7
-                 * 2-2.5m : 5-6
-                 * 2.5-3m : 4-5
-                 * > 3m : Không đạt */
-                if (ResultFirstTime.Text == "No Data" && ResultSecondTime.Text == "No Data" && ResultThirdTime.Text == "No Data")
                 {
                     FinalScore = 0;
                 }
                 else
                 {
-                    FinalScore = 10 - (AvarageResult * 2);
+                    if ((AvarageResult >= 0) && (AvarageResult < 1))
+                    {
+                        FinalScore = 1;
+                    }
+                    else if ((AvarageResult >= 1) && (AvarageResult < 2))
+                    {
+                        FinalScore = 2;
+                    }
+                    else if ((AvarageResult >= 2) && (AvarageResult < 3))
+                    {
+                        FinalScore = 3;
+                    }
+                    else
+                    {
+                        FinalScore = 4;
+                    }
                 }
-                if (FinalScore >= 4)
+                switch (FinalScore)
                 {
-                    MyWorksheet.Cells[CurentRowWirtten, 6] = FinalScore.ToString();
-                    MyWorksheet.Cells[CurentRowWirtten, 7] = "Đạt";
-                }
-                else
-                {
-                    MyWorksheet.Cells[CurentRowWirtten, 6] = "0";
-                    MyWorksheet.Cells[CurentRowWirtten, 7] = "Không Đạt";
+                    case 0:
+                        MyWorksheet.Cells[CurentRowWirtten, 4] = AvarageResult.ToString();
+                        MyWorksheet.Cells[CurentRowWirtten, 5] = "Không đạt";
+                        break;
+                    case 1:
+                        MyWorksheet.Cells[CurentRowWirtten, 4] = AvarageResult.ToString();
+                        MyWorksheet.Cells[CurentRowWirtten, 5] = "Giỏi";
+                        break;
+                    case 2:
+                        MyWorksheet.Cells[CurentRowWirtten, 4] = AvarageResult.ToString();
+                        MyWorksheet.Cells[CurentRowWirtten, 5] = "Khá";
+                        break;
+                    case 3:
+                        MyWorksheet.Cells[CurentRowWirtten, 4] = AvarageResult.ToString();
+                        MyWorksheet.Cells[CurentRowWirtten, 5] = "Đạt";
+                        break;
+                    case 4:
+                        MyWorksheet.Cells[CurentRowWirtten, 4] = AvarageResult.ToString();
+                        MyWorksheet.Cells[CurentRowWirtten, 5] = "Không Đạt";
+                        break;
                 }
             }
             catch
@@ -491,11 +460,11 @@ namespace WindowsFormsApp1
                     string responseBody = await response.Content.ReadAsStringAsync();
                     var jsonData = responseBody;
                     double tmpDistance = GetJsonData(jsonData, "distance");
-                    if (tmpDistance < (max_range_detect + 300) && tmpDistance > 150)
+                    if (tmpDistance < (max_range_detect + delta_error) && tmpDistance > 240)
                     // if (tmpDistance < (max_range_detect) && tmpDistance > 150)
                     {
                         dataList.Add(jsonData);
-                        Console.WriteLine("responseBody = " + responseBody);
+                        Console.WriteLine("responseBody = " + GetJsonData(jsonData, "distance"));
                     }
                 }
                 else
@@ -542,6 +511,7 @@ namespace WindowsFormsApp1
         private string get_smallest_data()
         {
             // Get smallest data from list
+            // double global_smalest_data;
             double smallest_distance = max_range_detect;
             string smallest_data = @"{'angle':'0','distance':'0'}";
             dataList.ForEach(delegate (string jsonData)
@@ -588,12 +558,47 @@ namespace WindowsFormsApp1
             {
                 ResultDistance = GetJsonData(smallest_data, "distance") / 1000 - delta_error / 1000;
             }
-            Console.WriteLine("RbriefAngle = " + GetJsonData(smallest_data, "angle"));
+            Console.WriteLine("BriefAngle = " + GetJsonData(smallest_data, "angle"));
             Console.WriteLine("ResultAngle = " + angle);
             Console.WriteLine("BriefDistance = " + GetJsonData(smallest_data, "distance"));
             Console.WriteLine("ResultDistance = " + ResultDistance);
             GrenadeMove(ResultDistance, angle);
             return true;
+        }
+
+        private void preperalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingBox.Visible = true;
+            SettingBox.Enabled = true;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            SettingBox.Visible = false;
+            SettingBox.Enabled = false;
+        }
+
+        private void configOK_Click(object sender, EventArgs e)
+        {
+            SettingBox.Visible = false;
+            SettingBox.Enabled = false;
+            delta_error = 0;
+            try
+            {
+                max_range_detect = int.Parse(max_range_tb.Text);
+                delta_error = int.Parse(errorTb.Text);
+                Console.WriteLine(max_range_detect);
+                Console.WriteLine(delta_error);
+            }
+            catch
+            {
+                Console.WriteLine("Parse Error");
+            }
         }
     }
 }
