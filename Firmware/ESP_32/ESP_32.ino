@@ -51,6 +51,7 @@ void setup()
   Serial2.begin(115200);
   lidar.begin(Serial2);
   pinMode(LED_STA_PIN, OUTPUT);
+  pinMode(BUTTON_ERASE,INPUT_PULLUP);
   ledcSetup(ledChannel, freq, resolution);
   ledcAttachPin(RPLIDAR_MOTOR, ledChannel);
   WiFi.mode(WIFI_STA);
@@ -129,8 +130,8 @@ void loop()
     angle = lidar.getCurrentPoint().angle;            //anglue value in degree
     bool startBit = lidar.getCurrentPoint().startBit; //whether this point is belong to a new scan
     byte quality = lidar.getCurrentPoint().quality;   //quality of the current measurement
-    Serial.println("_____________________________________");
-    Serial.println("Lidar Get info...");
+//    Serial.println("_____________________________________");
+//    Serial.println("Lidar Get info...");
   }
   else
   {
@@ -145,7 +146,10 @@ void loop()
   }
   Serial.println(lidar.getCurrentPoint().distance);
   Serial.println(lidar.getCurrentPoint().angle);
-  Serial.println(lidar.getCurrentPoint().startBit);
-  Serial.println(lidar.getCurrentPoint().quality);
-  Serial.println("_____________________________________");
+  if(BUTTON_ERASE == 0){
+    clearNVSFlash();
+  }
+//  Serial.println(lidar.getCurrentPoint().startBit);
+//  Serial.println(lidar.getCurrentPoint().quality);
+//  Serial.println("_____________________________________");
 }

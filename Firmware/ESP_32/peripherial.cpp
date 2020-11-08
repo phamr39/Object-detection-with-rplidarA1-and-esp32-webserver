@@ -45,6 +45,13 @@ void fnreadEepromWifi()
   }
 }
 
+void clearNVSFlash()
+{
+  for (int i = 0 ; i < EEPROM.length() ; i++) {
+    EEPROM.write(i, 0);
+  }
+}
+
 void fnwriteEepromWifi()
 {
   fnWriteEepromString(ARRD_SSID_ST,ssidST);

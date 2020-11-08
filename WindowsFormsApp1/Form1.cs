@@ -310,6 +310,8 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Get Data Clicked");
                 if (Process_Data() == true)
                 {
+                    // ResultDistance = 0.935;
+                    GrenadeMove(ResultDistance, -1.55);
                     if (true == true)
                     {
                         if (ResultDistance < 3)
