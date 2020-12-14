@@ -58,3 +58,12 @@ D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreComp
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 D:\Something\ThiKHKT\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\fail-icon.jpg
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\pass-icon.jpg
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\no-data.jpg
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.WinHttp.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\obj\Debug\Interop.WMPRichPreviewLauncher.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\Microsoft.Office.Interop.Excel.dll
+F:\Desktopfoder\Outsourcing\KHKT-CP\ThiKHKT\WindowsFormsApp1\bin\Debug\stdole.dll
