@@ -88,18 +88,23 @@
             this.errorTb = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.max_range_tb = new System.Windows.Forms.TextBox();
+            this.selectList = new System.Windows.Forms.Button();
+            this.textBoxClassList = new System.Windows.Forms.TextBox();
+            this.theNextStudent = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.targetBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SettingBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(112, 24);
+            this.label1.Location = new System.Drawing.Point(195, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(486, 33);
             this.label1.TabIndex = 0;
@@ -370,7 +375,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1112, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -565,7 +570,7 @@
             this.SettingBox.Controls.Add(this.label7);
             this.SettingBox.Controls.Add(this.max_range_tb);
             this.SettingBox.Enabled = false;
-            this.SettingBox.Location = new System.Drawing.Point(223, 79);
+            this.SettingBox.Location = new System.Drawing.Point(70, 92);
             this.SettingBox.Name = "SettingBox";
             this.SettingBox.Size = new System.Drawing.Size(232, 145);
             this.SettingBox.TabIndex = 25;
@@ -616,11 +621,56 @@
             this.max_range_tb.Size = new System.Drawing.Size(100, 20);
             this.max_range_tb.TabIndex = 0;
             // 
+            // selectList
+            // 
+            this.selectList.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectList.Location = new System.Drawing.Point(470, 491);
+            this.selectList.Name = "selectList";
+            this.selectList.Size = new System.Drawing.Size(142, 35);
+            this.selectList.TabIndex = 26;
+            this.selectList.Text = "Thêm danh sách lớp";
+            this.selectList.UseVisualStyleBackColor = true;
+            this.selectList.Click += new System.EventHandler(this.selectList_Click);
+            // 
+            // textBoxClassList
+            // 
+            this.textBoxClassList.Location = new System.Drawing.Point(12, 499);
+            this.textBoxClassList.Name = "textBoxClassList";
+            this.textBoxClassList.ReadOnly = true;
+            this.textBoxClassList.Size = new System.Drawing.Size(443, 20);
+            this.textBoxClassList.TabIndex = 5;
+            this.textBoxClassList.Text = "Danh sách lớp...";
+            this.textBoxClassList.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // theNextStudent
+            // 
+            this.theNextStudent.AutoSize = true;
+            this.theNextStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.theNextStudent.Location = new System.Drawing.Point(726, 92);
+            this.theNextStudent.Name = "theNextStudent";
+            this.theNextStudent.Size = new System.Drawing.Size(94, 16);
+            this.theNextStudent.TabIndex = 23;
+            this.theNextStudent.Text = "Danh sách lớp";
+            this.theNextStudent.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(729, 122);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(371, 404);
+            this.dataGridView1.TabIndex = 27;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 481);
+            this.ClientSize = new System.Drawing.Size(1112, 556);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.theNextStudent);
+            this.Controls.Add(this.textBoxClassList);
+            this.Controls.Add(this.selectList);
             this.Controls.Add(this.SettingBox);
             this.Controls.Add(this.targetBox);
             this.Controls.Add(this.ExcelGen);
@@ -650,6 +700,7 @@
             this.menuStrip1.PerformLayout();
             this.SettingBox.ResumeLayout(false);
             this.SettingBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -715,6 +766,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox errorTb;
         private System.Windows.Forms.Button configOK;
+        private System.Windows.Forms.Button selectList;
+        private System.Windows.Forms.TextBox textBoxClassList;
+        private System.Windows.Forms.Label theNextStudent;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

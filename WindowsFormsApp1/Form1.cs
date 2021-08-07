@@ -14,6 +14,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics.Eventing.Reader;
+using System.Data.OleDb;
+using System.Globalization;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -56,6 +59,11 @@ namespace WindowsFormsApp1
         Excel.Worksheet MyWorksheet;
         int CurentRowWirtten = 1;
         bool isWbClosed = false;
+
+        // Workbook for list students
+        string studentListPath = "";
+        List<string> studentList = new List<string>();
+
         /* Result definition */
         double ResultDistance = 2.0;
         // double ResultAngle = 2.0;
@@ -96,6 +104,8 @@ namespace WindowsFormsApp1
             MyWorksheet.Cells[1, 3] = "Kết quả";
             MyWorksheet.Cells[1, 4] = "Thành tích tốt nhất";
             MyWorksheet.Cells[1, 5] = "Xếp loại";
+            MyWorksheet.Cells[1, 6] = "Lớp";
+            MyWorksheet.Cells[1, 7] = "Trường";
             /* Create Image list */
             ListImg = new List<string>
             {
@@ -229,18 +239,25 @@ namespace WindowsFormsApp1
         {
             try
             {
-                string filename = SchoolTextbox.Text + "-" + ClassTextbox.Text + "-" + "Report.xls";
+                DateTime localDate = DateTime.Now;
+                string cultureName = "vi-VN";
+                var culture = new CultureInfo(cultureName);
+                string filename = "Report-nem-luu-dan-" + localDate.ToString(culture).Replace("/", "-").Replace(":","-").Replace(" ", "-") + ".xls";
+                Console.WriteLine("AAAAAAAAAAAAA {0}", filename);
                 string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
                 MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 MyWorkbook.Close(true, misValue, misValue);
                 xlApp.Quit();
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
                 isWbClosed = true;
-                MessageBox.Show("Đã lưu file Excel", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Đã lưu file Excel tại: " + DesPath, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK) {
+                    Process.Start("explorer.exe" , AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""));
+                }
             }
-            catch
+            catch (Exception err)
             {
-                Console.WriteLine("ExcelGen_Click error");
+                Console.WriteLine("ExcelGen_Click error", err);
                 MessageBox.Show("Không tạo được file Excel, hãy kiểm tra dữ liệu đã nhập", "Error Title", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
@@ -373,6 +390,9 @@ namespace WindowsFormsApp1
                 MyWorksheet.Cells[CurentRowWirtten, 1] = CurentRowWirtten - 1;
                 MyWorksheet.Cells[CurentRowWirtten, 2] = NameTextbox.Text;
                 MyWorksheet.Cells[CurentRowWirtten, 3] = ResultFirstTime.Text;
+                MyWorksheet.Cells[CurentRowWirtten, 6] = ClassTextbox.Text;
+                MyWorksheet.Cells[CurentRowWirtten, 7] = SchoolTextbox.Text;
+
                 // MyWorksheet.Cells[CurentRowWirtten, 4] = ResultSecondTime.Text;
                 // MyWorksheet.Cells[CurentRowWirtten, 5] = ResultThirdTime.Text;
                 // Calculate final score
@@ -601,6 +621,87 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine("Parse Error");
             }
+        }
+
+        private void selectList_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Chọn danh sách lớp";
+            dlg.Filter = "Excel files (*.xls,*.xlsx)|*.xls*; *.xlsx*|All files(*.*) | *.* ";
+            dlg.FilterIndex = 1;
+            dlg.RestoreDirectory = true;
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string extension = Path.GetExtension(dlg.FileName);
+                if (extension == ".xls" || extension == ".xlsx")
+                {
+                    // MessageBox.Show(dlg.FileName);
+                    DialogResult result = MessageBox.Show("Xác nhận thêm danh sách lớp?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        textBoxClassList.Text = dlg.FileName;
+                        studentListPath = dlg.FileName;
+
+                        try
+                        {
+                            DataTable dtExcel = new DataTable();
+                            dtExcel = ReadExcel(studentListPath, extension); //read excel file  
+                            dataGridView1.Visible = true;
+                            dataGridView1.DataSource = dtExcel;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message.ToString());
+                        }
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        //no...
+                    }
+                }
+                else {
+                    MessageBox.Show("Hãy chọn file excel, kết thúc bằng .xls hoặc .xlsx", "Error Title");
+                }
+            }
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public DataTable ReadExcel(string fileName, string fileExt)
+        {
+            string conn = string.Empty;
+            DataTable dtexcel = new DataTable();
+            if (fileExt.CompareTo(".xls") == 0)
+                conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
+            else
+                conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
+            using (OleDbConnection con = new OleDbConnection(conn))
+            {
+                try
+                {
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [Sheet1$]", con); //here we read data from sheet1  
+                    oleAdpt.Fill(dtexcel); //fill excel data into dataTable  
+                }
+                catch { }
+            }
+            return dtexcel;
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Selected student name
+            NameTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            ClassTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString();
+            SchoolTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 2].Value.ToString();
+            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Green;
         }
     }
 }
