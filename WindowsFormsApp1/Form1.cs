@@ -63,7 +63,8 @@ namespace WindowsFormsApp1
         // Workbook for list students
         string studentListPath = "";
         List<string> studentList = new List<string>();
-
+        int currentStudentListRowIdx = 0;
+        int currentStudentListColIdx = 0;
         /* Result definition */
         double ResultDistance = 2.0;
         // double ResultAngle = 2.0;
@@ -453,6 +454,7 @@ namespace WindowsFormsApp1
                         MyWorksheet.Cells[CurentRowWirtten, 5] = "Không Đạt";
                         break;
                 }
+                dataGridView1.Rows[currentStudentListRowIdx].Cells[currentStudentListColIdx].Style.BackColor = Color.Green;
             }
             catch
             {
@@ -699,9 +701,16 @@ namespace WindowsFormsApp1
         {
             // Selected student name
             NameTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            ClassTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString();
-            SchoolTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 2].Value.ToString();
-            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Green;
+            // ClassTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString();
+            // SchoolTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 2].Value.ToString();
+            currentStudentListColIdx = e.ColumnIndex;
+            currentStudentListRowIdx = e.RowIndex;
+            // dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Green;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
