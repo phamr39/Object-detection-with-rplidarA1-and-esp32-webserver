@@ -484,7 +484,8 @@ namespace WindowsFormsApp1
                     string responseBody = await response.Content.ReadAsStringAsync();
                     var jsonData = responseBody;
                     double tmpDistance = GetJsonData(jsonData, "distance");
-                    if (tmpDistance < (max_range_detect + delta_error) && tmpDistance > 240)
+                    // if (tmpDistance < (max_range_detect + delta_error) && tmpDistance > 240)
+                    if (tmpDistance < (max_range_detect + delta_error))
                     // if (tmpDistance < (max_range_detect) && tmpDistance > 150)
                     {
                         dataList.Add(jsonData);
