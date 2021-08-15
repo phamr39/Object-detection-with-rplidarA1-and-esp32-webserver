@@ -542,7 +542,7 @@ namespace WindowsFormsApp1
             dataList.ForEach(delegate (string jsonData)
             {
                 double tmpDistance = GetJsonData(jsonData, "distance");
-                if (tmpDistance < smallest_distance)
+                if (tmpDistance < smallest_distance && tmpDistance > 0)
                 {
                     smallest_distance = tmpDistance;
                     smallest_data = jsonData;
