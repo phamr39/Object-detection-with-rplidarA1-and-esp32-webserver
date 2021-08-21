@@ -62,6 +62,7 @@ namespace WindowsFormsApp1
 
         // Workbook for list students
         string studentListPath = "";
+        string globalExtensionStudentList = "xls";
         List<string> studentList = new List<string>();
         int currentStudentListRowIdx = 0;
         int currentStudentListColIdx = 0;
@@ -212,7 +213,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -243,7 +244,7 @@ namespace WindowsFormsApp1
                 DateTime localDate = DateTime.Now;
                 string cultureName = "vi-VN";
                 var culture = new CultureInfo(cultureName);
-                string filename = "Report-nem-luu-dan-" + localDate.ToString(culture).Replace("/", "-").Replace(":","-").Replace(" ", "-") + ".xls";
+                string filename = SchoolTextbox.Text + "-" + ClassTextbox.Text + "-" + "Report-nem-luu-dan-" + localDate.ToString(culture).Replace("/", "-").Replace(":", "-").Replace(" ", "-") + ".xls";
                 Console.WriteLine("AAAAAAAAAAAAA {0}", filename);
                 string DesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""), filename);
                 MyWorkbook.SaveAs(DesPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
@@ -253,7 +254,7 @@ namespace WindowsFormsApp1
                 isWbClosed = true;
                 DialogResult result = MessageBox.Show("Đã lưu file Excel tại: " + DesPath, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result == DialogResult.OK) {
-                    Process.Start("explorer.exe" , AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""));
+                    Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory.Replace("\\WindowsFormsApp1\\bin\\Debug", ""));
                 }
             }
             catch (Exception err)
@@ -511,7 +512,7 @@ namespace WindowsFormsApp1
             }
             catch
             {
-               // Console.WriteLine("Exception Handle");
+                // Console.WriteLine("Exception Handle");
             }
         }
         private double GetJsonData(string JsonString, string key)
@@ -574,7 +575,7 @@ namespace WindowsFormsApp1
         private bool Process_Data()
         {
             string smallest_data = get_smallest_data();
-            double angle = GetJsonData(smallest_data, "angle") *2*3.14/360;
+            double angle = GetJsonData(smallest_data, "angle") * 2 * 3.14 / 360;
             if (angle > 1.570796 && angle < 4.71238898)
             {
                 ResultDistance = GetJsonData(smallest_data, "distance") / 1000 + delta_error / 1000;
@@ -644,13 +645,28 @@ namespace WindowsFormsApp1
                     {
                         textBoxClassList.Text = dlg.FileName;
                         studentListPath = dlg.FileName;
+                        globalExtensionStudentList = extension;
+                        //  Get sheet names
+                        Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                        Microsoft.Office.Interop.Excel.Workbook excelBook = xlApp.Workbooks.Open(studentListPath);
+                        object misValue = System.Reflection.Missing.Value;
+                        String[] excelSheets = new String[excelBook.Worksheets.Count];
+                        int i = 0;
+                        comboBox1.Items.Clear();
+                        foreach (Microsoft.Office.Interop.Excel.Worksheet wSheet in excelBook.Worksheets)
+                        {
+                            excelSheets[i] = wSheet.Name;
+                            comboBox1.Items.Add(excelSheets[i]);
+                            i++;
+                        }
+                        excelBook.Close(false, misValue, misValue);
+                        xlApp.Quit();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+                        // --------
 
                         try
                         {
-                            DataTable dtExcel = new DataTable();
-                            dtExcel = ReadExcel(studentListPath, extension); //read excel file  
-                            dataGridView1.Visible = true;
-                            dataGridView1.DataSource = dtExcel;
+                            genDataGrid(studentListPath, extension, excelSheets[0]);
                         }
                         catch (Exception ex)
                         {
@@ -668,6 +684,16 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void genDataGrid(string path, string extension, string sheet)
+        {
+            try {
+                DataTable dtExcel = new DataTable();
+                dtExcel = ReadExcel(path, extension, sheet); //read excel file  
+                dataGridView1.Visible = true;
+                dataGridView1.DataSource = dtExcel;
+            }
+            catch { }
+        }
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
@@ -678,40 +704,60 @@ namespace WindowsFormsApp1
 
         }
 
-        public DataTable ReadExcel(string fileName, string fileExt)
+        public DataTable ReadExcel(string fileName, string fileExt, string sheet)
         {
-            string conn = string.Empty;
-            DataTable dtexcel = new DataTable();
-            if (fileExt.CompareTo(".xls") == 0)
-                conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
-            else
-                conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
-            using (OleDbConnection con = new OleDbConnection(conn))
-            {
-                try
+                string conn = string.Empty;
+                DataTable dtexcel = new DataTable();
+                if (fileExt.CompareTo(".xls") == 0)
+                    conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
+                else
+                    conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
+                using (OleDbConnection con = new OleDbConnection(conn))
                 {
-                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [Sheet1$]", con); //here we read data from sheet1  
+                    try
+                    {
+                    //OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [Sheet1$]", con); //here we read data from sheet1
+                    string command = "select * from " + "[" + sheet + "$]";
+                    // MessageBox.Show(command);
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter(command, con); //here we read data from sheet1  
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable  
+                    }
+                    catch (Exception e)  {
+                        Console.WriteLine("AAAAAAAAAAAAA => {}", e);
+                    }
                 }
-                catch { }
-            }
-            return dtexcel;
+                return dtexcel;
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Selected student name
-            NameTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            // ClassTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString();
-            // SchoolTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 2].Value.ToString();
-            currentStudentListColIdx = e.ColumnIndex;
-            currentStudentListRowIdx = e.RowIndex;
-            // dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Green;
+            try
+            {
+                // Selected student name
+                NameTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                // ClassTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString();
+                // SchoolTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex + 2].Value.ToString();
+                currentStudentListColIdx = e.ColumnIndex;
+                currentStudentListRowIdx = e.RowIndex;
+                // dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Green;
+            }
+            catch { }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedSheet = comboBox1.SelectedItem.ToString();
+            genDataGrid(studentListPath, globalExtensionStudentList, selectedSheet);
         }
     }
 }

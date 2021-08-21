@@ -92,6 +92,7 @@
             this.textBoxClassList = new System.Windows.Forms.TextBox();
             this.theNextStudent = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FirstTimeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.targetBox)).BeginInit();
@@ -375,7 +376,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1112, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1196, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -646,7 +647,7 @@
             // 
             this.theNextStudent.AutoSize = true;
             this.theNextStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.theNextStudent.Location = new System.Drawing.Point(726, 92);
+            this.theNextStudent.Location = new System.Drawing.Point(726, 77);
             this.theNextStudent.Name = "theNextStudent";
             this.theNextStudent.Size = new System.Drawing.Size(94, 16);
             this.theNextStudent.TabIndex = 23;
@@ -656,18 +657,30 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(729, 122);
+            this.dataGridView1.Location = new System.Drawing.Point(728, 103);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(371, 404);
+            this.dataGridView1.Size = new System.Drawing.Size(454, 424);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(1024, 76);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(160, 21);
+            this.comboBox1.TabIndex = 28;
+            this.comboBox1.Text = "Select Worksheet";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 556);
+            this.ClientSize = new System.Drawing.Size(1196, 541);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.theNextStudent);
             this.Controls.Add(this.textBoxClassList);
@@ -771,6 +784,7 @@
         private System.Windows.Forms.TextBox textBoxClassList;
         private System.Windows.Forms.Label theNextStudent;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
